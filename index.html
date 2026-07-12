@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>BijliBillCheck - بجلی بل چیک کریں</title>
+    <meta name="description" content="پاکستان کی تمام بجلی کمپنیوں کے بل آن لائن چیک کریں۔ MEPCO, LESCO, FESCO, IESCO, KE اور دیگر۔">
+    <meta name="keywords" content="بجلی کا بل, بل چیک کریں, MEPCO بل, LESCO بل, FESCO بل, IESCO بل, KE بل">
+    <meta name="google-site-verification" content="B1RI6RT1H9T8Ttg5fLtuLiNahDBa-ZOpbkWlnn9HTNk" />
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bijli-bill.pages.dev">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; padding: 15px; }
+        .container { max-width: 480px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #1e3a8a, #10b981); padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .flag { position: absolute; top: 5px; left: 5px; width: 50px; height: 30px; background: linear-gradient(135deg, #01411c 50%, #ffffff 50%); animation: wave 3s infinite ease-in-out; border-radius: 5px; }
+        @keyframes wave { 0% { transform: rotate(0deg); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } 100% { transform: rotate(0deg); } }
+        .header h1 { color: #fff; font-size: 24px; text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc; margin: 0; font-weight: bold; letter-spacing: 1px; }
+        .announce { background: #fbbf24; padding: 8px; border-radius: 10px; margin-bottom: 15px; font-weight: bold; overflow: hidden; white-space: nowrap; animation: scroll 20s linear infinite; font-size: 14px; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        h2 { color: #1e3a8a; margin-bottom: 15px; font-size: 20px; text-align: center; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #374151; font-size: 14px; }
+        select, input { width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 12px; font-size: 16px; margin-bottom: 12px; background: #fafafa; }
+        select:focus, input:focus { border-color: #10b981; outline: none; }
+        .btn-primary { width: 100%; padding: 16px; background: #10b981; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
+        .btn-primary:active { transform: scale(0.98); }
+        .ad-place { margin: 15px 0; min-height: 100px; background: #f9fafb; border-radius: 12px; padding: 10px; text-align: center; }
+        .share-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; background: #25D366; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .footer { margin-top: 20px; text-align: center; padding: 15px; background: #fff; border-radius: 15px; }
+        .footer .icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; }
+        .footer .icons a { text-decoration: none; font-size: 28px; }
+        .footer .disclaimer { font-size: 11px; color: #6b7280; margin-bottom: 5px; }
+        .footer .copyright { font-size: 13px; color: #374151; margin-bottom: 3px; }
+        .footer .developer { font-size: 12px; color: #9ca3af; }
+        .interstitial-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; color: white; }
+        .interstitial-overlay .ad-box { width: 90%; max-width: 400px; background: white; padding: 20px; border-radius: 15px; color: black; }
+        .interstitial-overlay .skip-btn { margin-top: 20px; padding: 12px 30px; background: #10b981; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; display: none; }
+        .interstitial-overlay .wait-msg { font-size: 18px; margin-bottom: 15px; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="flag"></div>
+            <h1>BijliBillCheck</h1>
+        </div>
+
+        <div class="announce" id="announceBar">بجلی بچائیں، اپنا بل چیک کریں!</div>
+
+        <div class="card">
+            <h2>اپنا بجلی بل چیک کریں</h2>
+            <label>Province / صوبہ</label>
+            <select id="provinceSelect" onchange="updateCompanies()">
+                <option value="">-- Select / منتخب کریں --</option>
+                <option value="Punjab">Punjab / پنجاب</option>
+                <option value="Sindh">Sindh / سندھ</option>
+                <option value="Khyber">Khyber / خیبر</option>
+                <option value="Balochistan">Balochistan / بلوچستان</option>
+            </select>
+
+            <label>Company / کمپنی</label>
+            <select id="companySelect">
+                <option value="">-- Select province first --</option>
+            </select>
+
+            <label>Reference Number (Optional)</label>
+            <input type="text" id="refNo" placeholder="Enter Reference Number">
+
+            <label>Consumer Number (Optional)</label>
+            <input type="text" id="consumerNo" placeholder="Enter Consumer Number">
+
+            <button class="btn-primary" onclick="checkBill()">Check Bill / بل چیک کریں</button>
+
+            <div class="ad-place" id="mainAd"></div>
+
+            <button class="share-btn" onclick="shareWhatsApp()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.666 1.447 5.18L2 22l4.82-1.447A9.974 9.974 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.75 0-3.38-.56-4.69-1.51l-.35-.25-2.97.88.88-2.97-.25-.35A7.948 7.948 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+                Share this site
+            </button>
+        </div>
+
+        <div class="footer">
+            <div class="icons">
+                <a href="mailto:maqsoodhassansolangi@gmail.com" target="_blank" style="color:#D44638;">📧</a>
+                <a href="https://wa.me/923062948990" target="_blank" style="color:#25D366;">📱</a>
+            </div>
+            <div class="disclaimer">
+                یہ سرکاری سائٹ نہیں ہے۔ تمام بل متعلقہ کمپنی کی سرکاری ویب سائٹ پر چیک کیے جاتے ہیں۔
+            </div>
+            <div class="copyright">© 2026 BijliBillCheck</div>
+            <div class="developer">Developed by MH Developers</div>
+        </div>
+    </div>
+
+    <div class="interstitial-overlay" id="interstitialOverlay">
+        <div class="wait-msg" id="waitMsg">براہِ کرم 15 سیکنڈ انتظار کریں، آپ کا بل چیک ہو رہا ہے...</div>
+        <div class="ad-box" id="interstitialAd"></div>
+        <button class="skip-btn" id="skipBtn" onclick="skipAd()">Skip Ad</button>
+    </div>
+
+    <script>
+        // ========== GitHub ڈیٹا لوڈ کریں ==========
+        let appData = {};
+        let fileSha = '';
+
+        async function loadData() {
+            try {
+                const res = await fetch('https://api.github.com/repos/maqsoodhassansolangi-ai/Bijli-bill/contents/data.json');
+                const data = await res.json();
+                fileSha = data.sha;
+                const content = atob(data.content);
+                appData = JSON.parse(content);
+            } catch(e) {
+                appData = {
+                    announceText: "بجلی بچائیں، اپنا بل چیک کریں!",
+                    mainAdCode: "",
+                    interstitialAdCode: "",
+                    companies: [
+                        { province: "Punjab", name: "MEPCO", url: "https://mepco.com.pk/bill-check" },
+                        { province: "Punjab", name: "LESCO", url: "https://www.lesco.gov.pk/bill" },
+                        { province: "Punjab", name: "FESCO", url: "https://www.fesco.com.pk/bill" },
+                        { province: "Punjab", name: "GEPCO", url: "https://www.gepco.com.pk/bill" },
+                        { province: "Sindh", name: "KE", url: "https://www.ke.com.pk/bill-check" },
+                        { province: "Sindh", name: "HESCO", url: "https://www.hesco.gov.pk/bill" },
+                        { province: "Sindh", name: "SEPCO", url: "https://www.sepco.com.pk/bill" },
+                        { province: "Khyber", name: "PESCO", url: "https://www.pesco.gov.pk/bill" },
+                        { province: "Khyber", name: "TESCO", url: "https://www.tesco.com.pk/bill" },
+                        { province: "Balochistan", name: "QESCO", url: "https://www.qesco.com.pk/bill" }
+                    ]
+                };
+            }
+            document.getElementById('announceBar').innerText = appData.announceText;
+            document.getElementById('mainAd').innerHTML = appData.mainAdCode;
+            updateCompanies();
+        }
+
+        function updateCompanies() {
+            const province = document.getElementById('provinceSelect').value;
+            const companySelect = document.getElementById('companySelect');
+            companySelect.innerHTML = '<option value="">-- Select Company --</option>';
+            if(!province) return;
+            const filtered = appData.companies.filter(c => c.province === province);
+            filtered.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.url;
+                opt.innerText = c.name;
+                companySelect.appendChild(opt);
+            });
+        }
+
+        function checkBill() {
+            const url = document.getElementById('companySelect').value;
+            if(!url) { alert('Please select province and company'); return; }
+            const overlay = document.getElementById('interstitialOverlay');
+            document.getElementById('interstitialAd').innerHTML = appData.interstitialAdCode;
+            document.getElementById('waitMsg').style.display = 'block';
+            document.getElementById('skipBtn').style.display = 'none';
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('skipBtn').style.display = 'block';
+                document.getElementById('waitMsg').style.display = 'none';
+            }, 15000);
+            window._billUrl = url;
+        }
+
+        function skipAd() {
+            document.getElementById('interstitialOverlay').style.display = 'none';
+            window.open(window._billUrl, '_blank');
+        }
+
+        function shareWhatsApp() {
+            const url = encodeURIComponent('https://bijli-bill.pages.dev');
+            window.open('https://wa.me/?text=' + url, '_blank');
+        }
+
+        loadData();
+
+        // ========== ایڈمن پینل (انگلش میں) ==========
+        if (window.location.search.includes('admin=bakhtawer787')) {
+            document.body.innerHTML = `
+                <div style="max-width:600px; margin:20px auto; padding:20px; background:white; border-radius:15px; font-family:Arial;">
+                    <h1 style="color:#1e3a8a;">🔒 Admin Panel</h1>
+                    <div style="margin-top:20px;">
+                        <h3>Announcement Bar</h3>
+                        <input type="text" id="newAnnounce" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Enter new text">
+                        <button onclick="updateGitHub('announceText', document.getElementById('newAnnounce').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Main Ad Code</h3>
+                        <textarea id="newMainAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateGitHub('mainAdCode', document.getElementById('newMainAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Interstitial Ad Code</h3>
+                        <textarea id="newInterAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateGitHub('interstitialAdCode', document.getElementById('newInterAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Add New Company</h3>
+                        <select id="newProvince" style="width:100%; padding:10px; margin-bottom:5px;">
+                            <option value="Punjab">Punjab</option>
+                            <option value="Sindh">Sindh</option>
+                            <option value="Khyber">Khyber</option>
+                            <option value="Balochistan">Balochistan</option>
+                        </select>
+                        <input type="text" id="newCompanyName" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Company Name">
+                        <input type="text" id="newCompanyUrl" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Bill Check URL">
+                        <button onclick="addCompanyGitHub()" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Add</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Current Companies</h3>
+                        <div id="companyList"></div>
+                    </div>
+                    <div style="margin-top:20px; text-align:center; color:#9ca3af; font-size:12px;">
+                        Logout: <a href="/" style="color:#1e3a8a;">Click here</a>
+                    </div>
+                </div>
+            `;
+
+            function renderCompanyList() {
+                const list = document.getElementById('companyList');
+                list.innerHTML = '';
+                appData.companies.forEach((c, i) => {
+                    const div = document.createElement('div');
+                    div.style.padding = '8px';
+                    div.style.borderBottom = '1px solid #eee';
+                    div.innerHTML = `
+                        <span>${c.province} - ${c.name}</span>
+                        <button onclick="deleteCompanyGitHub(${i})" style="float:right; background:#ef4444; color:white; border:none; border-radius:5px; padding:3px 10px;">Delete</button>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+            renderCompanyList();
+
+            async function updateGitHub(key, value) {
+                if(!value) return alert('Please enter a value');
+                appData[key] = value;
+                await pushToGitHub();
+                location.reload();
+            }
+
+            async function addCompanyGitHub() {
+                const province = document.getElementById('newProvince').value;
+                const name = document.getElementById('newCompanyName').value;
+                const url = document.getElementById('newCompanyUrl').value;
+                if(!name || !url) return alert('Name and URL are required');
+                appData.companies.push({ province, name, url });
+                await pushToGitHub();
+                location.reload();
+            }
+
+            async function deleteCompanyGitHub(index) {
+                if(!confirm('Are you sure you want to delete this company?')) return;
+                appData.companies.splice(index, 1);
+                await pushToGitHub();
+                location.reload();
+            }
+
+            async function pushToGitHub() {
+                const content = btoa(JSON.stringify(appData, null, 2));
+                await fetch('https://api.github.com/repos/maqsoodhassansolangi-ai/Bijli-bill/contents/data.json', {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'token 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',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Update via admin panel',
+                        content: content,
+                        sha: fileSha
+                    })
+                });
+            }
+        }
+    </script>
+</body>
+</html>

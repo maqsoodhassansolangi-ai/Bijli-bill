@@ -1,0 +1,17 @@
+{
+  "announceText": "بجلی بچائیں، اپنا بل چیک کریں!",
+  "mainAdCode": "",
+  "interstitialAdCode": "",
+  "companies": [
+    { "province": "Punjab", "name": "MEPCO", "url": "https://mepco.com.pk/bill-check" },
+    { "province": "Punjab", "name": "LESCO", "url": "https://www.lesco.gov.pk/bill" },
+    { "province": "Punjab", "name": "FESCO", "url": "https://www.fesco.com.pk/bill" },
+    { "province": "Punjab", "name": "GEPCO", "url": "https://www.gepco.com.pk/bill" },
+    { "province": "Sindh", "name": "KE", "url": "https://www.ke.com.pk/bill-check" },
+    { "province": "Sindh", "name": "HESCO", "url": "https://www.hesco.gov.pk/bill" },
+    { "province": "Sindh", "name": "SEPCO", "url": "https://www.sepco.com.pk/bill" },
+    { "province": "Khyber", "name": "PESCO", "url": "https://www.pesco.gov.pk/bill" },
+    { "province": "Khyber", "name": "TESCO", "url": "https://www.tesco.com.pk/bill" },
+    { "province": "Balochistan", "name": "QESCO", "url": "https://www.qesco.com.pk/bill" }
+  ]
+}
