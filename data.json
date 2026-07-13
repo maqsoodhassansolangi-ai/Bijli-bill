@@ -1,11 +1,11 @@
 {
   "announceText": "بجلی بچائیں، اپنا بل چیک کریں!",
-  "mainAdCode": "",
-  "interstitialAdCode": "",
-  "topAdCode": "",
-  "beforeBtnAdCode": "",
-  "footerAdCode": "",
-  "stickyAdCode": "",
+  "mainAdCode": "<script> atOptions = { 'key' : '3b33879f7c81a9969b0c179bb4610598', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script> <script src='https://recallscarce.com/3b33879f7c81a9969b0c179bb4610598/invoke.js'></script>",
+  "topAdCode": "<script> atOptions = { 'key' : '3b33879f7c81a9969b0c179bb4610598', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script> <script src='https://recallscarce.com/3b33879f7c81a9969b0c179bb4610598/invoke.js'></script>",
+  "beforeBtnAdCode": "<script> atOptions = { 'key' : '3b33879f7c81a9969b0c179bb4610598', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script> <script src='https://recallscarce.com/3b33879f7c81a9969b0c179bb4610598/invoke.js'></script>",
+  "footerAdCode": "<script> atOptions = { 'key' : '3b33879f7c81a9969b0c179bb4610598', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script> <script src='https://recallscarce.com/3b33879f7c81a9969b0c179bb4610598/invoke.js'></script>",
+  "stickyAdCode": "<script src='https://recallscarce.com/39/85/3d/39853db2cd3a48c58086cbd774319be7.js'></script>",
+  "interstitialAdCode": "<a href='https://recallscarce.com/d70euww2n?key=ceddebf6d0048c1dd5d08d69db46c9ed' target='_blank'>Click to continue</a>",
   "companies": [
     { "province": "Punjab", "name": "MEPCO", "url": "https://bill.pitc.com.pk/mepcobill" },
     { "province": "Punjab", "name": "LESCO", "url": "https://bill.pitc.com.pk/lescobill" },
