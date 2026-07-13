@@ -114,7 +114,7 @@
             letter-spacing:1px;
         }
         
-        /* اناؤنسمنٹ بار 2 (موونگ ٹکر - بائیں سے دائیں، آہستہ، لمبا جملہ) */
+        /* اناؤنسمنٹ بار 2 (موونگ ٹکر - بائیں سے دائیں، فوری لوپ) */
         .ticker-wrapper {
             background:#0a2a4a;
             border-radius:40px;
@@ -124,7 +124,7 @@
             white-space:nowrap;
             box-shadow:0 4px 12px rgba(0, 40, 80, 0.15);
             border:1px solid #1a5a8a;
-            direction:ltr; /* ٹیکسٹ کو بائیں سے دائیں چلانے کے لیے */
+            direction:ltr;
             position:relative;
         }
         .ticker-text {
@@ -132,14 +132,18 @@
             color:#ffd700;
             font-weight:600;
             font-size:16px;
-            padding-left:100%; /* شروع میں باہر سے */
-            animation: tickerMove 35s linear infinite;
+            padding-left:100%;
+            animation: tickerMove 30s linear infinite;
             letter-spacing:1px;
             white-space:nowrap;
         }
         @keyframes tickerMove {
-            0% { transform:translateX(-100%); } /* بائیں طرف سے شروع */
-            100% { transform:translateX(100%); }  /* دائیں طرف ختم */
+            0% { transform:translateX(-100%); }
+            100% { transform:translateX(100%); }
+        }
+        /* یہ یقینی بناتا ہے کہ ٹکر فوری طور پر دوبارہ لوپ کرے */
+        .ticker-text {
+            animation: tickerMove 30s linear infinite;
         }
         
         .top-ad { 
@@ -258,7 +262,7 @@
         footer .footer-links { 
             display:flex; 
             justify-content:center; 
-            gap:20px; 
+            gap:15px; 
             flex-wrap:wrap; 
             margin:10px 0; 
         }
@@ -273,7 +277,7 @@
             justify-content:center; 
             gap:20px; 
             flex-wrap:wrap; 
-            margin:10px 0; 
+            margin:8px 0; 
         }
         footer .contact a { 
             display:flex; 
@@ -363,7 +367,7 @@
         <!-- Announcement Bar 1 (فکسڈ) -->
         <div class="announcement">⚡ بجلی بچائیں، اپنا بل چیک کریں! ⚡</div>
         
-        <!-- Announcement Bar 2 (موونگ ٹکر - بائیں سے دائیں، آہستہ) -->
+        <!-- Announcement Bar 2 (موونگ ٹکر - بائیں سے دائیں، فوری لوپ) -->
         <div class="ticker-wrapper">
             <div class="ticker-text">
 📢 کیا آپ اپنی ویب سائٹ یا ویب پیج کو پیشہ ورانہ، خوبصورت اور پرکشش انداز میں ڈیزائن کرانا چاہتے ہیں؟ ہمارے تجربہ کار ڈویلپرز آپ کی ہر ضرورت کو پورا کرنے کے لیے حاضر ہیں — نیچے دیے گئے ای میل اور واٹس ایپ کے ذریعے ہم سے رابطہ کریں اور اپنے خوابوں کی ویب سائٹ کو حقیقت کا روپ دیں! 📢
@@ -477,9 +481,10 @@
                 <a href="dmca.html">DMCA</a>
                 <a href="privacy.html">پرائیویسی</a>
                 <a href="terms.html">شرائط</a>
+                <a href="sitemap.xml">Sitemap</a>
             </div>
             <p style="margin:8px 0 4px;">ڈس کلیمر: یہ سائٹ صرف معلومات کے لیے ہے۔ براہِ کرم کمپنی کی آفیشل ویب سائٹ سے تصدیق کریں۔</p>
-            <p style="margin:4px 0;">&copy; 2026 BijliBillCheck | Developed by MH Developers</p>
+            <p style="margin:4px 0;">&copy; 2026 BijliBillCheck. تمام حقوق محفوظ ہیں۔ | Developed by MH Developers</p>
         </footer>
     </div>
     
