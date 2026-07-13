@@ -2,6 +2,10 @@
   "announceText": "بجلی بچائیں، اپنا بل چیک کریں!",
   "mainAdCode": "",
   "interstitialAdCode": "",
+  "topAdCode": "",
+  "beforeBtnAdCode": "",
+  "footerAdCode": "",
+  "stickyAdCode": "",
   "companies": [
     { "province": "Punjab", "name": "MEPCO", "url": "https://bill.pitc.com.pk/mepcobill" },
     { "province": "Punjab", "name": "LESCO", "url": "https://bill.pitc.com.pk/lescobill" },
