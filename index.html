@@ -78,7 +78,7 @@
             margin:0 10px;
         }
         
-        /* جھنڈا - براہِ راست SVG (کوئی لنک نہیں) */
+        /* جھنڈا - براہِ راست SVG */
         .flag-container {
             width:45px;
             height:30px;
@@ -114,7 +114,7 @@
             letter-spacing:1px;
         }
         
-        /* اناؤنسمنٹ بار 2 (موونگ ٹکر - دائیں سے بائیں، آہستہ، لمبا جملہ) */
+        /* اناؤنسمنٹ بار 2 (موونگ ٹکر - بائیں سے دائیں، آہستہ، لمبا جملہ) */
         .ticker-wrapper {
             background:#0a2a4a;
             border-radius:40px;
@@ -124,7 +124,7 @@
             white-space:nowrap;
             box-shadow:0 4px 12px rgba(0, 40, 80, 0.15);
             border:1px solid #1a5a8a;
-            direction:ltr; /* دائیں سے بائیں حرکت کے لیے */
+            direction:ltr; /* ٹیکسٹ کو بائیں سے دائیں چلانے کے لیے */
             position:relative;
         }
         .ticker-text {
@@ -132,14 +132,14 @@
             color:#ffd700;
             font-weight:600;
             font-size:16px;
-            padding-left:100%;
+            padding-left:100%; /* شروع میں باہر سے */
             animation: tickerMove 35s linear infinite;
             letter-spacing:1px;
             white-space:nowrap;
         }
         @keyframes tickerMove {
-            0% { transform:translateX(0); }
-            100% { transform:translateX(-100%); }
+            0% { transform:translateX(-100%); } /* بائیں طرف سے شروع */
+            100% { transform:translateX(100%); }  /* دائیں طرف ختم */
         }
         
         .top-ad { 
@@ -329,7 +329,7 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <!-- Left Flag (براہِ راست SVG) -->
+            <!-- Left Flag -->
             <div class="flag-container">
                 <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
                     <rect width="15" height="40" fill="#FFFFFF"/>
@@ -346,7 +346,7 @@
                 <h1>BijliBillCheck</h1>
             </div>
             
-            <!-- Right Flag (براہِ راست SVG) -->
+            <!-- Right Flag -->
             <div class="flag-container">
                 <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
                     <rect width="15" height="40" fill="#FFFFFF"/>
@@ -363,7 +363,7 @@
         <!-- Announcement Bar 1 (فکسڈ) -->
         <div class="announcement">⚡ بجلی بچائیں، اپنا بل چیک کریں! ⚡</div>
         
-        <!-- Announcement Bar 2 (موونگ ٹکر - آہستہ، لمبا، دائیں سے بائیں) -->
+        <!-- Announcement Bar 2 (موونگ ٹکر - بائیں سے دائیں، آہستہ) -->
         <div class="ticker-wrapper">
             <div class="ticker-text">
 📢 کیا آپ اپنی ویب سائٹ یا ویب پیج کو پیشہ ورانہ، خوبصورت اور پرکشش انداز میں ڈیزائن کرانا چاہتے ہیں؟ ہمارے تجربہ کار ڈویلپرز آپ کی ہر ضرورت کو پورا کرنے کے لیے حاضر ہیں — نیچے دیے گئے ای میل اور واٹس ایپ کے ذریعے ہم سے رابطہ کریں اور اپنے خوابوں کی ویب سائٹ کو حقیقت کا روپ دیں! 📢
