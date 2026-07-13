@@ -128,7 +128,9 @@
         }
         .btn-primary:active { transform: scale(0.98); }
         
+        /* === ایڈ جگہیں === */
         .ad-place { margin: 15px 0; min-height: 100px; background: #f9fafb; border-radius: 12px; padding: 10px; text-align: center; }
+        .ad-place-small { margin: 10px 0; min-height: 60px; background: #f9fafb; border-radius: 8px; padding: 8px; text-align: center; }
         
         .share-btn { 
             display: flex; 
@@ -145,6 +147,34 @@
             font-weight: bold; 
             cursor: pointer; 
             margin-top: 10px; 
+        }
+        
+        /* === سٹکی فلور ایڈ === */
+        .sticky-footer-ad {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            max-width: 90%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 10px;
+            z-index: 999;
+            display: none;
+        }
+        .sticky-footer-ad .close-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 14px;
+            cursor: pointer;
         }
         
         /* === فوٹر === */
@@ -236,6 +266,9 @@
 
         <div class="announce" id="announceBar">بجلی بچائیں، اپنا بل چیک کریں!</div>
 
+        <!-- TOP AD (ہیڈر کے نیچے) -->
+        <div class="ad-place" id="topAd"></div>
+
         <div class="card">
             <h2>اپنا بجلی بل چیک کریں</h2>
             <label>صوبہ منتخب کریں</label>
@@ -258,8 +291,12 @@
             <label>کنزیومر نمبر (اختیاری)</label>
             <input type="text" id="consumerNo" placeholder="کنزیومر نمبر درج کریں">
 
+            <!-- BEFORE BUTTON AD (بٹن کے اوپر) -->
+            <div class="ad-place-small" id="beforeBtnAd"></div>
+
             <button class="btn-primary" onclick="checkBill()">بل چیک کریں</button>
 
+            <!-- MAIN AD (بٹن کے بعد) -->
             <div class="ad-place" id="mainAd"></div>
 
             <button class="share-btn" onclick="shareWhatsApp()">
@@ -267,6 +304,9 @@
                 یہ سائٹ شیئر کریں
             </button>
         </div>
+
+        <!-- FOOTER AD (فوٹر کے اوپر) -->
+        <div class="ad-place" id="footerAd"></div>
 
         <div class="footer">
             <div class="icons">
@@ -279,6 +319,12 @@
             <div class="copyright">© 2026 BijliBillCheck</div>
             <div class="developer">Developed by MH Developers</div>
         </div>
+    </div>
+
+    <!-- سٹکی فلور ایڈ -->
+    <div class="sticky-footer-ad" id="stickyAd">
+        <button class="close-btn" onclick="document.getElementById('stickyAd').style.display='none'">×</button>
+        <div id="stickyAdContent"></div>
     </div>
 
     <div class="interstitial-overlay" id="interstitialOverlay">
@@ -298,6 +344,10 @@
                     announceText: "بجلی بچائیں، اپنا بل چیک کریں!",
                     mainAdCode: "",
                     interstitialAdCode: "",
+                    topAdCode: "",
+                    beforeBtnAdCode: "",
+                    footerAdCode: "",
+                    stickyAdCode: "",
                     companies: [
                         { province: "Punjab", name: "MEPCO", url: "https://bill.pitc.com.pk/mepcobill" },
                         { province: "Punjab", name: "LESCO", url: "https://bill.pitc.com.pk/lescobill" },
@@ -315,7 +365,15 @@
                 };
             }
             document.getElementById('announceBar').innerText = appData.announceText;
+            
+            // تمام ایڈ جگہیں لوڈ کریں
             document.getElementById('mainAd').innerHTML = appData.mainAdCode;
+            document.getElementById('topAd').innerHTML = appData.topAdCode;
+            document.getElementById('beforeBtnAd').innerHTML = appData.beforeBtnAdCode;
+            document.getElementById('footerAd').innerHTML = appData.footerAdCode;
+            document.getElementById('stickyAdContent').innerHTML = appData.stickyAdCode;
+            if(appData.stickyAdCode) document.getElementById('stickyAd').style.display = 'block';
+            
             updateCompanies();
         }
 
@@ -381,6 +439,18 @@
             window.open('https://wa.me/?text=' + url, '_blank');
         }
 
+        // آٹو ریفریش ایڈز (ہر 20 سیکنڈ بعد)
+        function autoRefreshAds() {
+            const adSlots = ['mainAd', 'topAd', 'beforeBtnAd', 'footerAd'];
+            adSlots.forEach(id => {
+                const el = document.getElementById(id);
+                if(el && appData[id + 'Code']) {
+                    el.innerHTML = appData[id + 'Code'];
+                }
+            });
+        }
+        setInterval(autoRefreshAds, 20000);
+
         loadData();
 
         if (window.location.search.includes('admin=bakhtawer787')) {
@@ -401,6 +471,26 @@
                         <h3>Interstitial Ad Code</h3>
                         <textarea id="newInterAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
                         <button onclick="updateData('interstitialAdCode', document.getElementById('newInterAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Top Ad Code</h3>
+                        <textarea id="newTopAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('topAdCode', document.getElementById('newTopAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Before Button Ad Code</h3>
+                        <textarea id="newBeforeBtnAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('beforeBtnAdCode', document.getElementById('newBeforeBtnAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Footer Ad Code</h3>
+                        <textarea id="newFooterAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('footerAdCode', document.getElementById('newFooterAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <h3>Sticky Ad Code</h3>
+                        <textarea id="newStickyAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('stickyAdCode', document.getElementById('newStickyAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
                     </div>
                     <div style="margin-top:20px;">
                         <h3>Add New Company</h3>
