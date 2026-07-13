@@ -6,10 +6,7 @@
     <title>BijliBillCheck - بجلی بل چیک کریں</title>
     <meta name="description" content="پاکستان کی تمام بجلی کمپنیوں کے بل آن لائن چیک کریں۔ MEPCO, LESCO, FESCO, GEPCO, IESCO, KE, HESCO, SEPCO, PESCO, Hazeco, TESCO, QESCO">
     <meta name="keywords" content="بجلی کا بل, بل چیک کریں, MEPCO بل, LESCO بل, FESCO بل, IESCO بل, KE بل, پاکستان بجلی بل">
-    
-    <!-- === نیا Google Search Console میٹا ٹیگ === -->
     <meta name="google-site-verification" content="PO0MgTZXFfzddhVY9tSCuvmZ4HzOGQhxqcGWtJgtX3g" />
-    
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://bijli-bill.vercel.app">
     <style>
@@ -346,11 +343,11 @@
             appData = {
                 announceText: "بجلی بچائیں، اپنا بل چیک کریں!",
                 mainAdCode: "",
-                interstitialAdCode: "",
                 topAdCode: "",
                 beforeBtnAdCode: "",
                 footerAdCode: "",
                 stickyAdCode: "",
+                interstitialAdCode: "",
                 companies: [
                     { province: "Punjab", name: "MEPCO", url: "https://bill.pitc.com.pk/mepcobill" },
                     { province: "Punjab", name: "LESCO", url: "https://bill.pitc.com.pk/lescobill" },
@@ -418,18 +415,27 @@
             return;
         }
 
+        // انٹرسٹیشل ایڈ کے لیے سمارٹ لنک
         const overlay = document.getElementById('interstitialOverlay');
-        document.getElementById('interstitialAd').innerHTML = appData.interstitialAdCode;
-        document.getElementById('waitMsg').style.display = 'block';
-        document.getElementById('skipBtn').style.display = 'none';
-        overlay.style.display = 'flex';
+        const adBox = document.getElementById('interstitialAd');
+        
+        // اگر interstitialAdCode میں سمارٹ لنک موجود ہے تو اسے استعمال کریں
+        if (appData.interstitialAdCode && appData.interstitialAdCode.trim() !== '') {
+            adBox.innerHTML = appData.interstitialAdCode;
+            document.getElementById('waitMsg').style.display = 'block';
+            document.getElementById('skipBtn').style.display = 'none';
+            overlay.style.display = 'flex';
 
-        setTimeout(() => {
-            document.getElementById('skipBtn').style.display = 'block';
-            document.getElementById('waitMsg').style.display = 'none';
-        }, 15000);
-
-        window._billUrl = url;
+            setTimeout(() => {
+                document.getElementById('skipBtn').style.display = 'block';
+                document.getElementById('waitMsg').style.display = 'none';
+            }, 15000);
+            
+            window._billUrl = url;
+        } else {
+            // اگر کوڈ نہیں ہے تو براہِ راست بل کھولیں
+            window.open(url, '_blank');
+        }
     }
 
     function skipAd() {
@@ -472,13 +478,6 @@
                         <textarea id="newMainAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
                         <button onclick="updateData('mainAdCode', document.getElementById('newMainAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
                         <div id="msg-mainAd" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-                    
-                    <div style="margin-top:20px;">
-                        <h3>Interstitial Ad Code</h3>
-                        <textarea id="newInterAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('interstitialAdCode', document.getElementById('newInterAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
-                        <div id="msg-interAd" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
 
                     <div style="margin-top:20px;">
@@ -611,7 +610,7 @@
 
             async function saveData() {
                 try {
-                    const res = await fetch('/api/save-data', {
+                    const res = await fetch('/save-data.js', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(appData)
