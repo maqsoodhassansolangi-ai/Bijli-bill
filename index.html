@@ -6,7 +6,10 @@
     <title>BijliBillCheck - بجلی بل چیک کریں</title>
     <meta name="description" content="پاکستان کی تمام بجلی کمپنیوں کے بل آن لائن چیک کریں۔ MEPCO, LESCO, FESCO, GEPCO, IESCO, KE, HESCO, SEPCO, PESCO, Hazeco, TESCO, QESCO">
     <meta name="keywords" content="بجلی کا بل, بل چیک کریں, MEPCO بل, LESCO بل, FESCO بل, IESCO بل, KE بل, پاکستان بجلی بل">
+    
+    <!-- === نیا Google Search Console میٹا ٹیگ === -->
     <meta name="google-site-verification" content="PO0MgTZXFfzddhVY9tSCuvmZ4HzOGQhxqcGWtJgtX3g" />
+    
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://bijli-bill.vercel.app">
     <style>
@@ -332,166 +335,180 @@
         <div class="ad-box" id="interstitialAd"></div>
         <button class="skip-btn" id="skipBtn" onclick="skipAd()">Skip Ad</button>
     </div>
-        <script>
-        let appData = {};
+    <script>
+    let appData = {};
 
-        async function loadData() {
-            try {
-                const res = await fetch('/data.json');
-                appData = await res.json();
-            } catch(e) {
-                appData = {
-                    announceText: "بجلی بچائیں، اپنا بل چیک کریں!",
-                    mainAdCode: "",
-                    interstitialAdCode: "",
-                    topAdCode: "",
-                    beforeBtnAdCode: "",
-                    footerAdCode: "",
-                    stickyAdCode: "",
-                    companies: [
-                        { province: "Punjab", name: "MEPCO", url: "https://bill.pitc.com.pk/mepcobill" },
-                        { province: "Punjab", name: "LESCO", url: "https://bill.pitc.com.pk/lescobill" },
-                        { province: "Punjab", name: "FESCO", url: "https://bill.pitc.com.pk/fescobill" },
-                        { province: "Punjab", name: "GEPCO", url: "https://bill.pitc.com.pk/gepcobill" },
-                        { province: "Punjab", name: "IESCO", url: "https://bill.pitc.com.pk/iescobill" },
-                        { province: "Sindh", name: "KE", url: "https://ke.com.pk/bills-e-payments/" },
-                        { province: "Sindh", name: "HESCO", url: "https://bill.pitc.com.pk/hescobill" },
-                        { province: "Sindh", name: "SEPCO", url: "https://bill.pitc.com.pk/sepcobill" },
-                        { province: "Khyber Pakhtunkhwa", name: "PESCO", url: "https://bill.pitc.com.pk/pescobill" },
-                        { province: "Khyber Pakhtunkhwa", name: "Hazeco", url: "https://bill.pitc.com.pk/hazecobill" },
-                        { province: "Khyber Pakhtunkhwa", name: "TESCO", url: "https://bill.pitc.com.pk/tescobill" },
-                        { province: "Balochistan", name: "QESCO", url: "https://bill.pitc.com.pk/qescobill" }
-                    ]
-                };
+    async function loadData() {
+        try {
+            const res = await fetch('/data.json');
+            appData = await res.json();
+        } catch(e) {
+            appData = {
+                announceText: "بجلی بچائیں، اپنا بل چیک کریں!",
+                mainAdCode: "",
+                interstitialAdCode: "",
+                topAdCode: "",
+                beforeBtnAdCode: "",
+                footerAdCode: "",
+                stickyAdCode: "",
+                companies: [
+                    { province: "Punjab", name: "MEPCO", url: "https://bill.pitc.com.pk/mepcobill" },
+                    { province: "Punjab", name: "LESCO", url: "https://bill.pitc.com.pk/lescobill" },
+                    { province: "Punjab", name: "FESCO", url: "https://bill.pitc.com.pk/fescobill" },
+                    { province: "Punjab", name: "GEPCO", url: "https://bill.pitc.com.pk/gepcobill" },
+                    { province: "Punjab", name: "IESCO", url: "https://bill.pitc.com.pk/iescobill" },
+                    { province: "Sindh", name: "KE", url: "https://ke.com.pk/bills-e-payments/" },
+                    { province: "Sindh", name: "HESCO", url: "https://bill.pitc.com.pk/hescobill" },
+                    { province: "Sindh", name: "SEPCO", url: "https://bill.pitc.com.pk/sepcobill" },
+                    { province: "Khyber Pakhtunkhwa", name: "PESCO", url: "https://bill.pitc.com.pk/pescobill" },
+                    { province: "Khyber Pakhtunkhwa", name: "Hazeco", url: "https://bill.pitc.com.pk/hazecobill" },
+                    { province: "Khyber Pakhtunkhwa", name: "TESCO", url: "https://bill.pitc.com.pk/tescobill" },
+                    { province: "Balochistan", name: "QESCO", url: "https://bill.pitc.com.pk/qescobill" }
+                ]
+            };
+        }
+        document.getElementById('announceBar').innerText = appData.announceText;
+        
+        // تمام ایڈ جگہیں لوڈ کریں
+        document.getElementById('mainAd').innerHTML = appData.mainAdCode;
+        document.getElementById('topAd').innerHTML = appData.topAdCode;
+        document.getElementById('beforeBtnAd').innerHTML = appData.beforeBtnAdCode;
+        document.getElementById('footerAd').innerHTML = appData.footerAdCode;
+        document.getElementById('stickyAdContent').innerHTML = appData.stickyAdCode;
+        if(appData.stickyAdCode) document.getElementById('stickyAd').style.display = 'block';
+        
+        updateCompanies();
+    }
+
+    function updateCompanies() {
+        const province = document.getElementById('provinceSelect').value;
+        const companySelect = document.getElementById('companySelect');
+        companySelect.innerHTML = '<option value="">-- منتخب کریں --</option>';
+        if(!province) return;
+        const filtered = appData.companies.filter(c => c.province === province);
+        filtered.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.url;
+            opt.innerText = c.name;
+            companySelect.appendChild(opt);
+        });
+    }
+
+    function checkBill() {
+        const refNo = document.getElementById('refNo').value.trim();
+        const consumerNo = document.getElementById('consumerNo').value.trim();
+        const url = document.getElementById('companySelect').value;
+
+        if(!url) {
+            alert('براہِ کرم صوبہ اور کمپنی منتخب کریں');
+            return;
+        }
+
+        if(!refNo && !consumerNo) {
+            alert('فیلڈ خالی ہے، براہِ کرم نمبر درج کریں');
+            return;
+        }
+
+        if(refNo && refNo.length < 5) {
+            alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
+            return;
+        }
+        if(consumerNo && consumerNo.length < 5) {
+            alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
+            return;
+        }
+
+        const overlay = document.getElementById('interstitialOverlay');
+        document.getElementById('interstitialAd').innerHTML = appData.interstitialAdCode;
+        document.getElementById('waitMsg').style.display = 'block';
+        document.getElementById('skipBtn').style.display = 'none';
+        overlay.style.display = 'flex';
+
+        setTimeout(() => {
+            document.getElementById('skipBtn').style.display = 'block';
+            document.getElementById('waitMsg').style.display = 'none';
+        }, 15000);
+
+        window._billUrl = url;
+    }
+
+    function skipAd() {
+        document.getElementById('interstitialOverlay').style.display = 'none';
+        window.open(window._billUrl, '_blank');
+    }
+
+    function shareWhatsApp() {
+        const url = encodeURIComponent('https://bijli-bill.vercel.app');
+        window.open('https://wa.me/?text=' + url, '_blank');
+    }
+
+    // آٹو ریفریش ایڈز (ہر 20 سیکنڈ بعد)
+    function autoRefreshAds() {
+        const adSlots = ['mainAd', 'topAd', 'beforeBtnAd', 'footerAd'];
+        adSlots.forEach(id => {
+            const el = document.getElementById(id);
+            if(el && appData[id + 'Code']) {
+                el.innerHTML = appData[id + 'Code'];
             }
-            document.getElementById('announceBar').innerText = appData.announceText;
-            
-            // تمام ایڈ جگہیں لوڈ کریں
-            document.getElementById('mainAd').innerHTML = appData.mainAdCode;
-            document.getElementById('topAd').innerHTML = appData.topAdCode;
-            document.getElementById('beforeBtnAd').innerHTML = appData.beforeBtnAdCode;
-            document.getElementById('footerAd').innerHTML = appData.footerAdCode;
-            document.getElementById('stickyAdContent').innerHTML = appData.stickyAdCode;
-            if(appData.stickyAdCode) document.getElementById('stickyAd').style.display = 'block';
-            
-            updateCompanies();
-        }
+        });
+    }
+    setInterval(autoRefreshAds, 20000);
 
-        function updateCompanies() {
-            const province = document.getElementById('provinceSelect').value;
-            const companySelect = document.getElementById('companySelect');
-            companySelect.innerHTML = '<option value="">-- منتخب کریں --</option>';
-            if(!province) return;
-            const filtered = appData.companies.filter(c => c.province === province);
-            filtered.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c.url;
-                opt.innerText = c.name;
-                companySelect.appendChild(opt);
-            });
-        }
-
-        function checkBill() {
-            const refNo = document.getElementById('refNo').value.trim();
-            const consumerNo = document.getElementById('consumerNo').value.trim();
-            const url = document.getElementById('companySelect').value;
-
-            if(!url) {
-                alert('براہِ کرم صوبہ اور کمپنی منتخب کریں');
-                return;
-            }
-
-            if(!refNo && !consumerNo) {
-                alert('فیلڈ خالی ہے، براہِ کرم نمبر درج کریں');
-                return;
-            }
-
-            if(refNo && refNo.length < 5) {
-                alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
-                return;
-            }
-            if(consumerNo && consumerNo.length < 5) {
-                alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
-                return;
-            }
-
-            const overlay = document.getElementById('interstitialOverlay');
-            document.getElementById('interstitialAd').innerHTML = appData.interstitialAdCode;
-            document.getElementById('waitMsg').style.display = 'block';
-            document.getElementById('skipBtn').style.display = 'none';
-            overlay.style.display = 'flex';
-
-            setTimeout(() => {
-                document.getElementById('skipBtn').style.display = 'block';
-                document.getElementById('waitMsg').style.display = 'none';
-            }, 15000);
-
-            window._billUrl = url;
-        }
-
-        function skipAd() {
-            document.getElementById('interstitialOverlay').style.display = 'none';
-            window.open(window._billUrl, '_blank');
-        }
-
-        function shareWhatsApp() {
-            const url = encodeURIComponent('https://bijli-bill.vercel.app');
-            window.open('https://wa.me/?text=' + url, '_blank');
-        }
-
-        // آٹو ریفریش ایڈز (ہر 20 سیکنڈ بعد)
-        function autoRefreshAds() {
-            const adSlots = ['mainAd', 'topAd', 'beforeBtnAd', 'footerAd'];
-            adSlots.forEach(id => {
-                const el = document.getElementById(id);
-                if(el && appData[id + 'Code']) {
-                    el.innerHTML = appData[id + 'Code'];
-                }
-            });
-        }
-        setInterval(autoRefreshAds, 20000);
-
-        loadData();
-
-        if (window.location.search.includes('admin=bakhtawer787')) {
+    loadData();
+                if (window.location.search.includes('admin=bakhtawer787')) {
             document.body.innerHTML = `
                 <div style="max-width:600px; margin:20px auto; padding:20px; background:white; border-radius:15px; font-family:Arial;">
                     <h1 style="color:#1e3a8a;">🔒 Admin Panel</h1>
+                    
                     <div style="margin-top:20px;">
                         <h3>Announcement Bar</h3>
-                        <input type="text" id="newAnnounce" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Enter new text">
-                        <button onclick="updateData('announceText', document.getElementById('newAnnounce').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <input type="text" id="newAnnounce" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Enter new text">
+                        <button onclick="updateData('announceText', document.getElementById('newAnnounce').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <div id="msg-announce" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+                    
                     <div style="margin-top:20px;">
                         <h3>Main Ad Code</h3>
-                        <textarea id="newMainAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('mainAdCode', document.getElementById('newMainAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <textarea id="newMainAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('mainAdCode', document.getElementById('newMainAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <div id="msg-mainAd" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+                    
                     <div style="margin-top:20px;">
                         <h3>Interstitial Ad Code</h3>
-                        <textarea id="newInterAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('interstitialAdCode', document.getElementById('newInterAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <textarea id="newInterAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('interstitialAdCode', document.getElementById('newInterAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <div id="msg-interAd" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+
                     <div style="margin-top:20px;">
                         <h3>Top Ad Code</h3>
-                        <textarea id="newTopAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('topAdCode', document.getElementById('newTopAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <textarea id="newTopAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('topAdCode', document.getElementById('newTopAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <div id="msg-topAd" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+
                     <div style="margin-top:20px;">
                         <h3>Before Button Ad Code</h3>
-                        <textarea id="newBeforeBtnAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('beforeBtnAdCode', document.getElementById('newBeforeBtnAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <textarea id="newBeforeBtnAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('beforeBtnAdCode', document.getElementById('newBeforeBtnAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <div id="msg-beforeBtnAd" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+
                     <div style="margin-top:20px;">
                         <h3>Footer Ad Code</h3>
-                        <textarea id="newFooterAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('footerAdCode', document.getElementById('newFooterAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <textarea id="newFooterAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('footerAdCode', document.getElementById('newFooterAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <div id="msg-footerAd" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+
                     <div style="margin-top:20px;">
                         <h3>Sticky Ad Code</h3>
-                        <textarea id="newStickyAd" rows="4" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('stickyAdCode', document.getElementById('newStickyAd').value)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <textarea id="newStickyAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                        <button onclick="updateData('stickyAdCode', document.getElementById('newStickyAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                        <div id="msg-stickyAd" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+                    
                     <div style="margin-top:20px;">
                         <h3>Add New Company</h3>
                         <select id="newProvince" style="width:100%; padding:10px; margin-bottom:5px;">
@@ -501,13 +518,16 @@
                             <option value="Balochistan">Balochistan</option>
                         </select>
                         <input type="text" id="newCompanyName" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Company Name">
-                        <input type="text" id="newCompanyUrl" style="width:100%; padding:10px; margin-bottom:10px;" placeholder="Bill Check URL">
-                        <button onclick="addCompany()" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Add</button>
+                        <input type="text" id="newCompanyUrl" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Bill Check URL">
+                        <button onclick="addCompany(this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Add</button>
+                        <div id="msg-addCompany" style="font-size:12px; margin-top:5px; color:green;"></div>
                     </div>
+
                     <div style="margin-top:20px;">
                         <h3>Current Companies</h3>
                         <div id="companyList"></div>
                     </div>
+                    
                     <div style="margin-top:20px; text-align:center; color:#9ca3af; font-size:12px;">
                         Logout: <a href="/" style="color:#1e3a8a;">Click here</a>
                     </div>
@@ -523,44 +543,88 @@
                     div.style.borderBottom = '1px solid #eee';
                     div.innerHTML = `
                         <span>${c.province} - ${c.name}</span>
-                        <button onclick="deleteCompany(${i})" style="float:right; background:#ef4444; color:white; border:none; border-radius:5px; padding:3px 10px;">Delete</button>
+                        <button onclick="deleteCompany(${i}, this)" style="float:right; background:#ef4444; color:white; border:none; border-radius:5px; padding:3px 10px;">Delete</button>
+                        <div id="msg-delete-${i}" style="font-size:11px; color:red;"></div>
                     `;
                     list.appendChild(div);
                 });
             }
             renderCompanyList();
 
-            async function updateData(key, value) {
-                if(!value) return alert('Please enter a value');
+            async function updateData(key, value, btnElement) {
+                const msgDiv = btnElement.nextElementSibling;
+                if(!value) {
+                    msgDiv.innerText = '⚠️ Please enter a value';
+                    msgDiv.style.color = 'red';
+                    return;
+                }
                 appData[key] = value;
-                await saveData();
-                location.reload();
+                const result = await saveData();
+                if(result.success) {
+                    msgDiv.innerText = '✅ Data saved successfully!';
+                    msgDiv.style.color = 'green';
+                } else {
+                    msgDiv.innerText = '❌ Error: ' + result.error;
+                    msgDiv.style.color = 'red';
+                }
+                setTimeout(() => { msgDiv.innerText = ''; }, 5000);
             }
 
-            async function addCompany() {
+            async function addCompany(btnElement) {
+                const msgDiv = btnElement.nextElementSibling;
                 const province = document.getElementById('newProvince').value;
                 const name = document.getElementById('newCompanyName').value;
                 const url = document.getElementById('newCompanyUrl').value;
-                if(!name || !url) return alert('Name and URL are required');
+                if(!name || !url) {
+                    msgDiv.innerText = '⚠️ Name and URL are required';
+                    msgDiv.style.color = 'red';
+                    return;
+                }
                 appData.companies.push({ province, name, url });
-                await saveData();
-                location.reload();
+                const result = await saveData();
+                if(result.success) {
+                    msgDiv.innerText = '✅ Company added successfully!';
+                    msgDiv.style.color = 'green';
+                    renderCompanyList();
+                } else {
+                    msgDiv.innerText = '❌ Error: ' + result.error;
+                    msgDiv.style.color = 'red';
+                }
+                setTimeout(() => { msgDiv.innerText = ''; }, 5000);
             }
 
-            async function deleteCompany(index) {
+            async function deleteCompany(index, btnElement) {
+                const msgDiv = btnElement.nextElementSibling;
                 if(!confirm('Are you sure you want to delete this company?')) return;
                 appData.companies.splice(index, 1);
-                await saveData();
-                location.reload();
+                const result = await saveData();
+                if(result.success) {
+                    msgDiv.innerText = '✅ Company deleted!';
+                    msgDiv.style.color = 'green';
+                    renderCompanyList();
+                } else {
+                    msgDiv.innerText = '❌ Error: ' + result.error;
+                    msgDiv.style.color = 'red';
+                }
+                setTimeout(() => { msgDiv.innerText = ''; }, 5000);
             }
 
             async function saveData() {
-                const res = await fetch('/api/save-data', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(appData)
-                });
-                if(!res.ok) alert('Error saving data');
+                try {
+                    const res = await fetch('/api/save-data', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(appData)
+                    });
+                    if(res.ok) {
+                        return { success: true };
+                    } else {
+                        const errorText = await res.text();
+                        return { success: false, error: errorText };
+                    }
+                } catch(e) {
+                    return { success: false, error: e.message };
+                }
             }
         }
     </script>
