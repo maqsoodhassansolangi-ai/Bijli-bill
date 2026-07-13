@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>BijliBillCheck - بجلی بل چیک کریں</title>
-    <meta name="description" content="پاکستان کی تمام بجلی کمپنیوں کے بل آن لائن چیک کریں۔ MEPCO, LESCO, FESCO, IESCO, KE اور دیگر۔">
-    <meta name="keywords" content="بجلی کا بل, بل چیک کریں, MEPCO بل, LESCO بل, FESCO بل, IESCO بل, KE بل">
+    <meta name="description" content="پاکستان کی تمام بجلی کمپنیوں کے بل آن لائن چیک کریں۔ MEPCO, LESCO, FESCO, GEPCO, IESCO, KE, HESCO, SEPCO, PESCO, Hazeco, TESCO, QESCO">
+    <meta name="keywords" content="بجلی کا بل, بل چیک کریں, MEPCO بل, LESCO بل, FESCO بل, IESCO بل, KE بل, پاکستان بجلی بل">
     <meta name="google-site-verification" content="B1RI6RT1H9T8Ttg5fLtuLiNahDBa-ZOpbkWlnn9HTNk" />
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://bijli-bill.pages.dev">
@@ -13,12 +13,18 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; padding: 15px; }
         .container { max-width: 480px; margin: 0 auto; }
+        
+        /* ہیڈر */
         .header { background: linear-gradient(135deg, #1e3a8a, #10b981); padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 15px; position: relative; overflow: hidden; }
         .flag { position: absolute; top: 5px; left: 5px; width: 50px; height: 30px; background: linear-gradient(135deg, #01411c 50%, #ffffff 50%); animation: wave 3s infinite ease-in-out; border-radius: 5px; }
         @keyframes wave { 0% { transform: rotate(0deg); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } 100% { transform: rotate(0deg); } }
         .header h1 { color: #fff; font-size: 24px; text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc; margin: 0; font-weight: bold; letter-spacing: 1px; }
+        
+        /* اناؤنسمنٹ بار */
         .announce { background: #fbbf24; padding: 8px; border-radius: 10px; margin-bottom: 15px; font-weight: bold; overflow: hidden; white-space: nowrap; animation: scroll 20s linear infinite; font-size: 14px; }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
+        /* کارڈ */
         .card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
         h2 { color: #1e3a8a; margin-bottom: 15px; font-size: 20px; text-align: center; }
         label { display: block; font-weight: bold; margin-bottom: 5px; color: #374151; font-size: 14px; }
@@ -26,14 +32,24 @@
         select:focus, input:focus { border-color: #10b981; outline: none; }
         .btn-primary { width: 100%; padding: 16px; background: #10b981; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
         .btn-primary:active { transform: scale(0.98); }
+        
+        /* ایڈ */
         .ad-place { margin: 15px 0; min-height: 100px; background: #f9fafb; border-radius: 12px; padding: 10px; text-align: center; }
+        
+        /* شیئر بٹن */
         .share-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; background: #25D366; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        
+        /* فوٹر */
         .footer { margin-top: 20px; text-align: center; padding: 15px; background: #fff; border-radius: 15px; }
         .footer .icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; }
         .footer .icons a { text-decoration: none; font-size: 28px; }
+        .footer .icons a[href*="mailto"] { color: #D44638; }
+        .footer .icons a[href*="wa.me"] { color: #25D366; }
         .footer .disclaimer { font-size: 11px; color: #6b7280; margin-bottom: 5px; }
         .footer .copyright { font-size: 13px; color: #374151; margin-bottom: 3px; }
         .footer .developer { font-size: 12px; color: #9ca3af; }
+        
+        /* انٹرسٹیشل ایڈ */
         .interstitial-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; color: white; }
         .interstitial-overlay .ad-box { width: 90%; max-width: 400px; background: white; padding: 20px; border-radius: 15px; color: black; }
         .interstitial-overlay .skip-btn { margin-top: 20px; padding: 12px 30px; background: #10b981; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; display: none; }
@@ -42,49 +58,55 @@
 </head>
 <body>
     <div class="container">
+        <!-- ہیڈر -->
         <div class="header">
             <div class="flag"></div>
             <h1>BijliBillCheck</h1>
         </div>
 
+        <!-- اناؤنسمنٹ بار -->
         <div class="announce" id="announceBar">بجلی بچائیں، اپنا بل چیک کریں!</div>
 
+        <!-- مرکزی کارڈ -->
         <div class="card">
             <h2>اپنا بجلی بل چیک کریں</h2>
-            <label>Province / صوبہ</label>
+            <label>صوبہ منتخب کریں</label>
             <select id="provinceSelect" onchange="updateCompanies()">
-                <option value="">-- Select / منتخب کریں --</option>
+                <option value="">-- منتخب کریں --</option>
                 <option value="Punjab">Punjab / پنجاب</option>
                 <option value="Sindh">Sindh / سندھ</option>
-                <option value="Khyber">Khyber / خیبر</option>
+                <option value="Khyber Pakhtunkhwa">خیبر پختونخوا / KPK</option>
                 <option value="Balochistan">Balochistan / بلوچستان</option>
             </select>
 
-            <label>Company / کمپنی</label>
+            <label>بجلی کمپنی منتخب کریں</label>
             <select id="companySelect">
-                <option value="">-- Select province first --</option>
+                <option value="">-- پہلے صوبہ چنیں --</option>
             </select>
 
-            <label>Reference Number (Optional)</label>
-            <input type="text" id="refNo" placeholder="Enter Reference Number">
+            <label>ریفرنس نمبر (اختیاری)</label>
+            <input type="text" id="refNo" placeholder="ریفرنس نمبر درج کریں">
 
-            <label>Consumer Number (Optional)</label>
-            <input type="text" id="consumerNo" placeholder="Enter Consumer Number">
+            <label>کنزیومر نمبر (اختیاری)</label>
+            <input type="text" id="consumerNo" placeholder="کنزیومر نمبر درج کریں">
 
-            <button class="btn-primary" onclick="checkBill()">Check Bill / بل چیک کریں</button>
+            <button class="btn-primary" onclick="checkBill()">بل چیک کریں</button>
 
+            <!-- مین ایڈ -->
             <div class="ad-place" id="mainAd"></div>
 
+            <!-- واٹس ایپ شیئر -->
             <button class="share-btn" onclick="shareWhatsApp()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.666 1.447 5.18L2 22l4.82-1.447A9.974 9.974 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.75 0-3.38-.56-4.69-1.51l-.35-.25-2.97.88.88-2.97-.25-.35A7.948 7.948 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
-                Share this site
+                یہ سائٹ شیئر کریں
             </button>
         </div>
 
+        <!-- فوٹر -->
         <div class="footer">
             <div class="icons">
-                <a href="mailto:maqsoodhassansolangi@gmail.com" target="_blank" style="color:#D44638;">📧</a>
-                <a href="https://wa.me/923062948990" target="_blank" style="color:#25D366;">📱</a>
+                <a href="mailto:maqsoodhassansolangi@gmail.com" target="_blank">📧</a>
+                <a href="https://wa.me/923062948990" target="_blank">📱</a>
             </div>
             <div class="disclaimer">
                 یہ سرکاری سائٹ نہیں ہے۔ تمام بل متعلقہ کمپنی کی سرکاری ویب سائٹ پر چیک کیے جاتے ہیں۔
@@ -94,8 +116,9 @@
         </div>
     </div>
 
+    <!-- انٹرسٹیشل ایڈ -->
     <div class="interstitial-overlay" id="interstitialOverlay">
-        <div class="wait-msg" id="waitMsg">براہِ کرم 15 سیکنڈ انتظار کریں، آپ کا بل چیک ہو رہا ہے...</div>
+        <div class="wait-msg" id="waitMsg">براہِ کرم انتظار کریں، آپ کا بل چیک کیا جا رہا ہے۔</div>
         <div class="ad-box" id="interstitialAd"></div>
         <button class="skip-btn" id="skipBtn" onclick="skipAd()">Skip Ad</button>
     </div>
@@ -118,16 +141,18 @@
                     mainAdCode: "",
                     interstitialAdCode: "",
                     companies: [
-                        { province: "Punjab", name: "MEPCO", url: "https://mepco.com.pk/bill-check" },
-                        { province: "Punjab", name: "LESCO", url: "https://www.lesco.gov.pk/bill" },
-                        { province: "Punjab", name: "FESCO", url: "https://www.fesco.com.pk/bill" },
-                        { province: "Punjab", name: "GEPCO", url: "https://www.gepco.com.pk/bill" },
-                        { province: "Sindh", name: "KE", url: "https://www.ke.com.pk/bill-check" },
-                        { province: "Sindh", name: "HESCO", url: "https://www.hesco.gov.pk/bill" },
-                        { province: "Sindh", name: "SEPCO", url: "https://www.sepco.com.pk/bill" },
-                        { province: "Khyber", name: "PESCO", url: "https://www.pesco.gov.pk/bill" },
-                        { province: "Khyber", name: "TESCO", url: "https://www.tesco.com.pk/bill" },
-                        { province: "Balochistan", name: "QESCO", url: "https://www.qesco.com.pk/bill" }
+                        { province: "Punjab", name: "MEPCO", url: "https://bill.pitc.com.pk/mepcobill" },
+                        { province: "Punjab", name: "LESCO", url: "https://bill.pitc.com.pk/lescobill" },
+                        { province: "Punjab", name: "FESCO", url: "https://bill.pitc.com.pk/fescobill" },
+                        { province: "Punjab", name: "GEPCO", url: "https://bill.pitc.com.pk/gepcobill" },
+                        { province: "Punjab", name: "IESCO", url: "https://bill.pitc.com.pk/iescobill" },
+                        { province: "Sindh", name: "KE", url: "https://ke.com.pk/bills-e-payments/" },
+                        { province: "Sindh", name: "HESCO", url: "https://bill.pitc.com.pk/hescobill" },
+                        { province: "Sindh", name: "SEPCO", url: "https://bill.pitc.com.pk/sepcobill" },
+                        { province: "Khyber Pakhtunkhwa", name: "PESCO", url: "https://bill.pitc.com.pk/pescobill" },
+                        { province: "Khyber Pakhtunkhwa", name: "Hazeco", url: "https://bill.pitc.com.pk/hazecobill" },
+                        { province: "Khyber Pakhtunkhwa", name: "TESCO", url: "https://bill.pitc.com.pk/tescobill" },
+                        { province: "Balochistan", name: "QESCO", url: "https://bill.pitc.com.pk/qescobill" }
                     ]
                 };
             }
@@ -139,7 +164,7 @@
         function updateCompanies() {
             const province = document.getElementById('provinceSelect').value;
             const companySelect = document.getElementById('companySelect');
-            companySelect.innerHTML = '<option value="">-- Select Company --</option>';
+            companySelect.innerHTML = '<option value="">-- منتخب کریں --</option>';
             if(!province) return;
             const filtered = appData.companies.filter(c => c.province === province);
             filtered.forEach(c => {
@@ -151,17 +176,43 @@
         }
 
         function checkBill() {
+            const refNo = document.getElementById('refNo').value.trim();
+            const consumerNo = document.getElementById('consumerNo').value.trim();
             const url = document.getElementById('companySelect').value;
-            if(!url) { alert('Please select province and company'); return; }
+
+            if(!url) {
+                alert('براہِ کرم صوبہ اور کمپنی منتخب کریں');
+                return;
+            }
+
+            // اگر دونوں فیلڈز خالی ہیں
+            if(!refNo && !consumerNo) {
+                alert('فیلڈ خالی ہے، براہِ کرم نمبر درج کریں');
+                return;
+            }
+
+            // اگر کسی ایک فیلڈ میں نمبر کم ہے (مثلاً 14 ہندسوں کی بجائے 5)
+            if(refNo && refNo.length < 5) {
+                alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
+                return;
+            }
+            if(consumerNo && consumerNo.length < 5) {
+                alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
+                return;
+            }
+
+            // اگر ویلڈیشن پاس ہو جائے تو ایڈ دکھائیں
             const overlay = document.getElementById('interstitialOverlay');
             document.getElementById('interstitialAd').innerHTML = appData.interstitialAdCode;
             document.getElementById('waitMsg').style.display = 'block';
             document.getElementById('skipBtn').style.display = 'none';
             overlay.style.display = 'flex';
+
             setTimeout(() => {
                 document.getElementById('skipBtn').style.display = 'block';
                 document.getElementById('waitMsg').style.display = 'none';
             }, 15000);
+
             window._billUrl = url;
         }
 
@@ -177,7 +228,7 @@
 
         loadData();
 
-        // ========== ایڈمن پینل (انگلش میں) ==========
+        // ========== ایڈمن پینل ==========
         if (window.location.search.includes('admin=bakhtawer787')) {
             document.body.innerHTML = `
                 <div style="max-width:600px; margin:20px auto; padding:20px; background:white; border-radius:15px; font-family:Arial;">
@@ -202,7 +253,7 @@
                         <select id="newProvince" style="width:100%; padding:10px; margin-bottom:5px;">
                             <option value="Punjab">Punjab</option>
                             <option value="Sindh">Sindh</option>
-                            <option value="Khyber">Khyber</option>
+                            <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
                             <option value="Balochistan">Balochistan</option>
                         </select>
                         <input type="text" id="newCompanyName" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Company Name">
