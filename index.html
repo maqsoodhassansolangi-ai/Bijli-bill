@@ -10,7 +10,6 @@
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
         
-        /* سرکاری ویب سائٹ جیسے صاف ستھرے رنگ */
         body { 
             background:#f0f6fa; 
             min-height:100vh;
@@ -19,7 +18,6 @@
             color:#1a2a3a;
         }
         
-        /* بجلی کی لہریں (بہت ہلکی) */
         body::before {
             content:"⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡";
             position:fixed;
@@ -52,7 +50,6 @@
             box-shadow:0 10px 40px rgba(0,0,0,0.08);
         }
         
-        /* ہیڈر - سرکاری طرز */
         header {
             background:linear-gradient(135deg, #ffffff, #e8f0f8);
             border-radius:20px;
@@ -87,6 +84,7 @@
             border-radius:4px;
             overflow:hidden;
             box-shadow:0 2px 8px rgba(0,0,0,0.15);
+            position:relative;
         }
         .flag-container svg { 
             width:100%; 
@@ -100,7 +98,6 @@
             75% { transform:skewX(2deg) rotate(1deg) scaleX(0.98); }
         }
         
-        /* اناؤنسمنٹ بار */
         .announcement {
             background:linear-gradient(90deg, #0a6a3a, #0a8a4a);
             color:#ffffff;
@@ -114,7 +111,6 @@
             letter-spacing:1px;
         }
         
-        /* Top Ad */
         .top-ad { 
             text-align:center; 
             margin:5px 0 18px 0; 
@@ -158,7 +154,6 @@
         }
         .form-group select option { background:#ffffff; }
         
-        /* Before Button Ad */
         .before-ad { 
             text-align:center; 
             margin:12px 0; 
@@ -189,7 +184,6 @@
             box-shadow:0 8px 30px rgba(10, 120, 70, 0.35); 
         }
         
-        /* Main Ad After Button */
         .main-ad { 
             text-align:center; 
             margin:12px 0; 
@@ -209,7 +203,6 @@
         }
         .share-btn:hover { transform:scale(1.03); box-shadow:0 6px 25px #25D36666; }
         
-        /* Footer Ad */
         .footer-ad { 
             text-align:center; 
             margin:12px 0 10px 0; 
@@ -262,7 +255,6 @@
         footer .contact a:hover { color:#0a6a9a; }
         footer .contact img { width:22px; height:22px; }
         
-        /* Sticky Ad - Bottom Right */
         .sticky-ad {
             position:fixed; 
             bottom:20px; 
@@ -307,13 +299,15 @@
         <header>
             <div class="brand">
                 <div class="flag-container">
-                    <!-- پاکستانی جھنڈا (صرف SVG) -->
+                    <!-- پاکستانی جھنڈا (درست - چاند اور تارہ) -->
                     <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
                         <rect width="60" height="40" fill="#01411C"/>
                         <rect width="20" height="40" fill="#FFFFFF"/>
-                        <circle cx="36" cy="20" r="7" fill="#FFFFFF"/>
-                        <circle cx="36" cy="20" r="5" fill="#01411C"/>
-                        <path d="M36 15 L39 18 L43 17 L40 21 L43 25 L39 23 L36 27 L33 23 L29 25 L32 21 L29 17 L33 18 Z" fill="#FFFFFF"/>
+                        <g transform="translate(36, 20)">
+                            <circle cx="0" cy="0" r="7" fill="#FFFFFF"/>
+                            <circle cx="-2.5" cy="0" r="6" fill="#01411C"/>
+                            <path d="M0 -4.5 L1.3 -1.5 L4.5 -1.5 L2 0.5 L3 3.5 L0 1.5 L-3 3.5 L-2 0.5 L-4.5 -1.5 L-1.3 -1.5 Z" fill="#FFFFFF"/>
+                        </g>
                     </svg>
                 </div>
                 <h1>BijliBillCheck</h1>
@@ -336,7 +330,7 @@
             </script>
             <script src="https://recallscarce.com/3ef6c36c8fa10c47223f38c5ee53ebf4/invoke.js"></script>
         </div>
-        
+                
         <!-- Form -->
         <div class="form-box">
             <div class="form-group">
@@ -453,26 +447,26 @@
     
     <!-- Popunder Script (loads on click) -->
     <script>
-        // Company data
+        // Company data (آپ کے ڈیٹا کے مطابق)
         const companies = {
             punjab: [
                 { name: 'MEPCO', url: 'https://bill.pitc.com.pk/mepcobill' },
                 { name: 'LESCO', url: 'https://bill.pitc.com.pk/lescobill' },
                 { name: 'FESCO', url: 'https://bill.pitc.com.pk/fescobill' },
                 { name: 'GEPCO', url: 'https://bill.pitc.com.pk/gepcobill' },
-                { name: 'IESCO', url: 'https://bill.pitc.com.pk/iescobill' },
-                { name: 'KE', url: 'https://ke.com.pk/bills-e-payments/' }
+                { name: 'IESCO', url: 'https://bill.pitc.com.pk/iescobill' }
             ],
             sindh: [
+                { name: 'KE', url: 'https://ke.com.pk/bills-e-payments/' },
                 { name: 'HESCO', url: 'https://bill.pitc.com.pk/hescobill' },
                 { name: 'SEPCO', url: 'https://bill.pitc.com.pk/sepcobill' }
             ],
             kpk: [
                 { name: 'PESCO', url: 'https://bill.pitc.com.pk/pescobill' },
-                { name: 'Hazeco', url: 'https://bill.pitc.com.pk/hazecobill' }
+                { name: 'Hazeco', url: 'https://bill.pitc.com.pk/hazecobill' },
+                { name: 'TESCO', url: 'https://bill.pitc.com.pk/tescobill' }
             ],
             balochistan: [
-                { name: 'TESCO', url: 'https://bill.pitc.com.pk/tescobill' },
                 { name: 'QESCO', url: 'https://bill.pitc.com.pk/qescobill' }
             ]
         };
@@ -539,4 +533,4 @@
     <script async="async" data-cfasync="false" src="https://recallscarce.com/ba99cfb60da9719efc2f47b83f6f9fa4/invoke.js"></script>
     <div id="container-ba99cfb60da9719efc2f47b83f6f9fa4" style="display:none;"></div>
 </body>
-</html>
+    </html>
