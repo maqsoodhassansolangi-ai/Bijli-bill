@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://bijli-bill.pages.dev/sitemap.xml
