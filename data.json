@@ -3,15 +3,17 @@
   "mainAdCode": "",
   "interstitialAdCode": "",
   "companies": [
-    { "province": "Punjab", "name": "MEPCO", "url": "https://mepco.com.pk/bill-check" },
-    { "province": "Punjab", "name": "LESCO", "url": "https://www.lesco.gov.pk/bill" },
-    { "province": "Punjab", "name": "FESCO", "url": "https://www.fesco.com.pk/bill" },
-    { "province": "Punjab", "name": "GEPCO", "url": "https://www.gepco.com.pk/bill" },
-    { "province": "Sindh", "name": "KE", "url": "https://www.ke.com.pk/bill-check" },
-    { "province": "Sindh", "name": "HESCO", "url": "https://www.hesco.gov.pk/bill" },
-    { "province": "Sindh", "name": "SEPCO", "url": "https://www.sepco.com.pk/bill" },
-    { "province": "Khyber", "name": "PESCO", "url": "https://www.pesco.gov.pk/bill" },
-    { "province": "Khyber", "name": "TESCO", "url": "https://www.tesco.com.pk/bill" },
-    { "province": "Balochistan", "name": "QESCO", "url": "https://www.qesco.com.pk/bill" }
+    { "province": "Punjab", "name": "MEPCO", "url": "https://bill.pitc.com.pk/mepcobill" },
+    { "province": "Punjab", "name": "LESCO", "url": "https://bill.pitc.com.pk/lescobill" },
+    { "province": "Punjab", "name": "FESCO", "url": "https://bill.pitc.com.pk/fescobill" },
+    { "province": "Punjab", "name": "GEPCO", "url": "https://bill.pitc.com.pk/gepcobill" },
+    { "province": "Punjab", "name": "IESCO", "url": "https://bill.pitc.com.pk/iescobill" },
+    { "province": "Sindh", "name": "KE", "url": "https://ke.com.pk/bills-e-payments/" },
+    { "province": "Sindh", "name": "HESCO", "url": "https://bill.pitc.com.pk/hescobill" },
+    { "province": "Sindh", "name": "SEPCO", "url": "https://bill.pitc.com.pk/sepcobill" },
+    { "province": "Khyber Pakhtunkhwa", "name": "PESCO", "url": "https://bill.pitc.com.pk/pescobill" },
+    { "province": "Khyber Pakhtunkhwa", "name": "Hazeco", "url": "https://bill.pitc.com.pk/hazecobill" },
+    { "province": "Khyber Pakhtunkhwa", "name": "TESCO", "url": "https://bill.pitc.com.pk/tescobill" },
+    { "province": "Balochistan", "name": "QESCO", "url": "https://bill.pitc.com.pk/qescobill" }
   ]
 }
