@@ -53,43 +53,45 @@
         header {
             background:linear-gradient(135deg, #ffffff, #e8f0f8);
             border-radius:20px;
-            padding:15px 25px;
+            padding:12px 20px;
             display:flex;
             align-items:center;
             justify-content:space-between;
             border:1px solid #d0e0f0;
             box-shadow:0 4px 15px rgba(0, 80, 200, 0.06);
-            margin-bottom:15px;
+            margin-bottom:10px;
             flex-wrap:wrap;
         }
         .brand { 
             display:flex; 
             align-items:center; 
-            gap:15px; 
+            gap:12px; 
+            flex:1;
+            justify-content:center;
         }
         .brand h1 {
-            font-size:28px;
+            font-size:26px;
             font-weight:800;
             color:#0a4a7a;
             text-shadow:0 2px 4px rgba(0,80,180,0.1);
             letter-spacing:1px;
+            margin:0 10px;
         }
         
-        /* پاکستانی جھنڈا - متحرک (لہراتا ہوا) */
         .flag-container {
-            width:60px;
-            height:40px;
+            width:45px;
+            height:30px;
             display:inline-block;
             animation: waveFlag 1.8s infinite ease-in-out;
             border-radius:4px;
             overflow:hidden;
-            box-shadow:0 2px 8px rgba(0,0,0,0.15);
-            position:relative;
+            box-shadow:0 2px 6px rgba(0,0,0,0.12);
         }
-        .flag-container svg { 
+        .flag-container img { 
             width:100%; 
             height:100%; 
             display:block;
+            object-fit:cover;
         }
         @keyframes waveFlag {
             0%,100% { transform:skewX(-4deg) rotate(0deg) scaleX(1); }
@@ -98,6 +100,7 @@
             75% { transform:skewX(2deg) rotate(1deg) scaleX(0.98); }
         }
         
+        /* اناؤنسمنٹ بار 1 (فکسڈ) */
         .announcement {
             background:linear-gradient(90deg, #0a6a3a, #0a8a4a);
             color:#ffffff;
@@ -106,9 +109,34 @@
             border-radius:40px;
             font-weight:bold;
             font-size:18px;
-            margin-bottom:20px;
+            margin-bottom:15px;
             box-shadow:0 4px 15px rgba(10, 100, 50, 0.2);
             letter-spacing:1px;
+        }
+        
+        /* اناؤنسمنٹ بار 2 (موونگ ٹکر) */
+        .ticker-wrapper {
+            background:#0a2a4a;
+            border-radius:40px;
+            padding:8px 12px;
+            margin-bottom:18px;
+            overflow:hidden;
+            white-space:nowrap;
+            box-shadow:0 4px 12px rgba(0, 40, 80, 0.15);
+            border:1px solid #1a5a8a;
+        }
+        .ticker-text {
+            display:inline-block;
+            color:#ffd700;
+            font-weight:600;
+            font-size:16px;
+            padding-left:100%;
+            animation: tickerMove 20s linear infinite;
+            letter-spacing:0.5px;
+        }
+        @keyframes tickerMove {
+            0% { transform:translateX(0); }
+            100% { transform:translateX(-200%); }
         }
         
         .top-ad { 
@@ -288,8 +316,9 @@
         }
         @media (max-width:480px) {
             .sticky-ad { width:140px; height:260px; bottom:10px; right:10px; }
-            .brand h1 { font-size:22px; }
+            .brand h1 { font-size:20px; }
             .container { padding:12px; }
+            .flag-container { width:35px; height:23px; }
         }
     </style>
 </head>
@@ -297,31 +326,30 @@
     <div class="container">
         <!-- Header -->
         <header>
+            <!-- Left Flag -->
+            <div class="flag-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/320px-Flag_of_Pakistan.svg.png" alt="پاکستانی جھنڈا">
+            </div>
+            
             <div class="brand">
-                <div class="flag-container">
-                    <!-- پاکستانی جھنڈا (درست - چاند اور تارہ) -->
-                    <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- سبز پس منظر (باقی حصہ) -->
-    <rect width="60" height="40" fill="#01411C"/>
-    <!-- سفید پٹی (بائیں طرف) -->
-    <rect width="20" height="40" fill="#FFFFFF"/>
-    <!-- چاند اور تارا (سفید پٹی کی طرف - بائیں جانب) -->
-    <g transform="translate(24, 20)">
-        <!-- چاند کا باہری دائرہ (سفید) -->
-        <circle cx="0" cy="0" r="7" fill="#FFFFFF"/>
-        <!-- چاند کا اندرونی حصہ (سبز) جو ہلال بناتا ہے -->
-        <circle cx="2.5" cy="0" r="6" fill="#01411C"/>
-        <!-- تارا (5 کونے، صحیح سمت میں) -->
-        <path d="M0 -4.5 L1.3 -1.5 L4.5 -1.5 L2 0.5 L3 3.5 L0 1.5 L-3 3.5 L-2 0.5 L-4.5 -1.5 L-1.3 -1.5 Z" fill="#FFFFFF"/>
-    </g>
-                    </svg>
-                </div>
-                <h1>Bijli Bill Check</h1>
+                <h1>BijliBillCheck</h1>
+            </div>
+            
+            <!-- Right Flag -->
+            <div class="flag-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/320px-Flag_of_Pakistan.svg.png" alt="پاکستانی جھنڈا">
             </div>
         </header>
         
-        <!-- Announcement Bar -->
+        <!-- Announcement Bar 1 (فکسڈ) -->
         <div class="announcement">⚡ بجلی بچائیں، اپنا بل چیک کریں! ⚡</div>
+        
+        <!-- Announcement Bar 2 (موونگ ٹکر) -->
+        <div class="ticker-wrapper">
+            <div class="ticker-text">
+                📢 کیا آپ اپنی ویب سائٹ کو پیشہ ورانہ اور خوبصورت بنانا چاہتے ہیں؟ ہمارے ماہرین سے رابطہ کریں — ای میل اور واٹس ایپ نیچے فوٹر میں موجود ہیں! 📢
+            </div>
+        </div>
         
         <!-- Top Ad -->
         <div class="top-ad">
@@ -539,4 +567,4 @@
     <script async="async" data-cfasync="false" src="https://recallscarce.com/ba99cfb60da9719efc2f47b83f6f9fa4/invoke.js"></script>
     <div id="container-ba99cfb60da9719efc2f47b83f6f9fa4" style="display:none;"></div>
 </body>
-    </html>
+</html>
