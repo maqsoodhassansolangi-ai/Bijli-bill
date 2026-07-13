@@ -9,130 +9,296 @@
     <link rel="canonical" href="https://bijli-bill.vercel.app">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
-        body { background:#0a0e1a; min-height:100vh; position:relative; overflow-x:hidden; }
+        
+        /* سرکاری ویب سائٹ جیسے صاف ستھرے رنگ */
+        body { 
+            background:#f0f6fa; 
+            min-height:100vh;
+            position:relative;
+            overflow-x:hidden;
+            color:#1a2a3a;
+        }
+        
+        /* بجلی کی لہریں (بہت ہلکی) */
         body::before {
             content:"⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡";
-            position:fixed; top:0; left:0; right:0; bottom:0;
-            font-size:80px; letter-spacing:120px;
-            color:rgba(255,255,255,0.04); pointer-events:none; z-index:0;
-            animation: lightningFloat 15s infinite alternate ease-in-out;
-            white-space:nowrap; line-height:200vh; transform:rotate(-15deg);
+            position:fixed;
+            top:0; left:0; right:0; bottom:0;
+            font-size:60px;
+            letter-spacing:80px;
+            color:rgba(0, 100, 200, 0.04);
+            pointer-events:none;
+            z-index:0;
+            animation: lightningFloat 20s infinite alternate ease-in-out;
+            white-space:nowrap;
+            line-height:200vh;
+            transform:rotate(-10deg);
         }
         @keyframes lightningFloat {
-            0% { transform:rotate(-15deg) translateY(0); opacity:0.3; }
-            50% { opacity:0.7; transform:rotate(-10deg) translateY(-50px); }
-            100% { opacity:0.3; transform:rotate(-20deg) translateY(50px); }
+            0% { transform:rotate(-10deg) translateY(0); opacity:0.2; }
+            50% { opacity:0.5; transform:rotate(-5deg) translateY(-30px); }
+            100% { opacity:0.2; transform:rotate(-15deg) translateY(30px); }
         }
-        .container { max-width:600px; margin:0 auto; padding:15px; position:relative; z-index:1; }
         
+        .container { 
+            max-width:700px; 
+            margin:0 auto; 
+            padding:20px; 
+            position:relative; 
+            z-index:1;
+            background:rgba(255,255,255,0.85);
+            backdrop-filter:blur(4px);
+            border-radius:30px;
+            box-shadow:0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        /* ہیڈر - سرکاری طرز */
         header {
-            background:linear-gradient(135deg,#0b1326,#1a1f3a);
-            border-radius:20px; padding:15px 20px;
-            display:flex; align-items:center; justify-content:space-between;
-            border:1px solid #00f0ff33;
-            box-shadow:0 0 30px #00f0ff22;
-            margin-bottom:10px;
+            background:linear-gradient(135deg, #ffffff, #e8f0f8);
+            border-radius:20px;
+            padding:15px 25px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            border:1px solid #d0e0f0;
+            box-shadow:0 4px 15px rgba(0, 80, 200, 0.06);
+            margin-bottom:15px;
             flex-wrap:wrap;
         }
-        .brand { display:flex; align-items:center; gap:12px; }
+        .brand { 
+            display:flex; 
+            align-items:center; 
+            gap:15px; 
+        }
         .brand h1 {
-            font-size:28px; font-weight:900;
-            background:linear-gradient(45deg,#ff00ff,#00ffff,#ff00ff);
-            background-size:300% 300%;
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-            animation: neonGlow 3s infinite alternate;
-            text-shadow:0 0 20px #00ffff55;
-        }
-        @keyframes neonGlow {
-            0% { background-position:0% 50%; }
-            100% { background-position:100% 50%; }
-        }
-        .flag-container { width:50px; height:30px; display:inline-block; animation:waveFlag 2s infinite ease-in-out; }
-        .flag-container svg { width:100%; height:100%; }
-        @keyframes waveFlag {
-            0%,100% { transform:skewX(-5deg) rotate(0deg); }
-            50% { transform:skewX(5deg) rotate(3deg); }
+            font-size:28px;
+            font-weight:800;
+            color:#0a4a7a;
+            text-shadow:0 2px 4px rgba(0,80,180,0.1);
+            letter-spacing:1px;
         }
         
+        /* پاکستانی جھنڈا - متحرک (لہراتا ہوا) */
+        .flag-container {
+            width:60px;
+            height:40px;
+            display:inline-block;
+            animation: waveFlag 1.8s infinite ease-in-out;
+            border-radius:4px;
+            overflow:hidden;
+            box-shadow:0 2px 8px rgba(0,0,0,0.15);
+        }
+        .flag-container svg { 
+            width:100%; 
+            height:100%; 
+            display:block;
+        }
+        @keyframes waveFlag {
+            0%,100% { transform:skewX(-4deg) rotate(0deg) scaleX(1); }
+            25% { transform:skewX(2deg) rotate(1deg) scaleX(0.98); }
+            50% { transform:skewX(6deg) rotate(2deg) scaleX(0.96); }
+            75% { transform:skewX(2deg) rotate(1deg) scaleX(0.98); }
+        }
+        
+        /* اناؤنسمنٹ بار */
         .announcement {
-            background:linear-gradient(90deg,#ffd700,#ffaa00);
-            color:#000; text-align:center; padding:10px; border-radius:30px;
-            font-weight:bold; font-size:18px; margin-bottom:15px;
-            box-shadow:0 0 20px #ffd70055; animation:pulseAnnounce 2s infinite;
+            background:linear-gradient(90deg, #0a6a3a, #0a8a4a);
+            color:#ffffff;
+            text-align:center;
+            padding:12px;
+            border-radius:40px;
+            font-weight:bold;
+            font-size:18px;
+            margin-bottom:20px;
+            box-shadow:0 4px 15px rgba(10, 100, 50, 0.2);
+            letter-spacing:1px;
         }
-        @keyframes pulseAnnounce {
-            0%,100% { transform:scale(1); }
-            50% { transform:scale(1.01); }
+        
+        /* Top Ad */
+        .top-ad { 
+            text-align:center; 
+            margin:5px 0 18px 0; 
+            min-height:50px; 
+            background:#ffffff; 
+            border-radius:12px; 
+            padding:6px; 
+            border:1px solid #dce8f2;
         }
-
-        /* Top Ad Container */
-        .top-ad { text-align:center; margin:10px 0 15px 0; min-height:50px; background:#111a2e; border-radius:10px; padding:5px; }
         
         .form-box {
-            background:linear-gradient(135deg,#101830,#1a2240);
-            border-radius:20px; padding:20px; border:1px solid #00f0ff22;
-            box-shadow:0 0 30px #00f0ff11; margin-bottom:15px;
+            background:#ffffff;
+            border-radius:20px;
+            padding:25px;
+            border:1px solid #dce8f2;
+            box-shadow:0 4px 20px rgba(0,0,0,0.04);
+            margin-bottom:15px;
         }
-        .form-group { margin-bottom:15px; }
-        .form-group label { display:block; color:#aab; margin-bottom:5px; font-weight:bold; }
+        .form-group { margin-bottom:18px; }
+        .form-group label { 
+            display:block; 
+            color:#1a3a5a; 
+            margin-bottom:6px; 
+            font-weight:600; 
+            font-size:15px;
+        }
         .form-group select, .form-group input {
-            width:100%; padding:12px; border-radius:10px; border:1px solid #334;
-            background:#0b0f1f; color:#fff; font-size:16px;
+            width:100%; 
+            padding:12px 16px; 
+            border-radius:12px; 
+            border:2px solid #dce8f2;
+            background:#f9fcff; 
+            color:#1a2a3a; 
+            font-size:16px;
+            transition:border 0.3s;
         }
-        .form-group select option { background:#0b0f1f; }
+        .form-group select:focus, .form-group input:focus {
+            border-color:#0a6a9a;
+            outline:none;
+            background:#ffffff;
+        }
+        .form-group select option { background:#ffffff; }
         
         /* Before Button Ad */
-        .before-ad { text-align:center; margin:15px 0; min-height:250px; background:#111a2e; border-radius:10px; padding:5px; }
+        .before-ad { 
+            text-align:center; 
+            margin:12px 0; 
+            min-height:250px; 
+            background:#f9fcff; 
+            border-radius:12px; 
+            padding:6px; 
+            border:1px solid #dce8f2;
+        }
         
         .btn-check {
-            width:100%; padding:15px; border:none; border-radius:30px;
-            background:linear-gradient(45deg,#ff00ff,#00ffff);
-            color:#000; font-size:22px; font-weight:900; cursor:pointer;
-            box-shadow:0 0 30px #ff00ff55; transition:0.3s; margin:10px 0;
+            width:100%; 
+            padding:16px; 
+            border:none; 
+            border-radius:40px;
+            background:linear-gradient(135deg, #0a7a4a, #0a9a5a);
+            color:#ffffff; 
+            font-size:22px; 
+            font-weight:700; 
+            cursor:pointer;
+            box-shadow:0 6px 20px rgba(10, 120, 70, 0.25); 
+            transition:0.3s; 
+            margin:12px 0;
+            letter-spacing:1px;
         }
-        .btn-check:hover { transform:scale(1.02); box-shadow:0 0 50px #ff00ff88; }
+        .btn-check:hover { 
+            transform:translateY(-2px); 
+            box-shadow:0 8px 30px rgba(10, 120, 70, 0.35); 
+        }
         
         /* Main Ad After Button */
-        .main-ad { text-align:center; margin:15px 0; min-height:250px; background:#111a2e; border-radius:10px; padding:5px; }
+        .main-ad { 
+            text-align:center; 
+            margin:12px 0; 
+            min-height:250px; 
+            background:#f9fcff; 
+            border-radius:12px; 
+            padding:6px; 
+            border:1px solid #dce8f2;
+        }
         
         .share-section { text-align:center; margin:20px 0; }
         .share-btn {
-            display:inline-flex; align-items:center; gap:10px; padding:12px 25px;
-            background:#25D366; color:#fff; border-radius:30px; font-weight:bold;
-            text-decoration:none; font-size:18px; box-shadow:0 0 20px #25D36655;
+            display:inline-flex; align-items:center; gap:12px; padding:14px 30px;
+            background:#25D366; color:#fff; border-radius:40px; font-weight:600;
+            text-decoration:none; font-size:18px; box-shadow:0 4px 15px #25D36644;
+            transition:0.3s;
         }
-        .share-btn:hover { transform:scale(1.05); }
+        .share-btn:hover { transform:scale(1.03); box-shadow:0 6px 25px #25D36666; }
         
         /* Footer Ad */
-        .footer-ad { text-align:center; margin:15px 0 10px 0; min-height:50px; background:#111a2e; border-radius:10px; padding:5px; }
+        .footer-ad { 
+            text-align:center; 
+            margin:12px 0 10px 0; 
+            min-height:50px; 
+            background:#f9fcff; 
+            border-radius:12px; 
+            padding:6px; 
+            border:1px solid #dce8f2;
+        }
         
         footer {
-            background:#0b1326; border-radius:20px; padding:20px; text-align:center;
-            border:1px solid #00f0ff22; color:#889; font-size:14px;
+            background:#ffffff;
+            border-radius:20px; 
+            padding:20px; 
+            text-align:center;
+            border:1px solid #dce8f2; 
+            color:#2a4a6a; 
+            font-size:14px;
             margin-top:10px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.03);
         }
-        footer .footer-links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:10px 0; }
-        footer .footer-links a { color:#00f0ff; text-decoration:none; }
-        footer .contact { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:10px 0; }
-        footer .contact a { display:flex; align-items:center; gap:5px; color:#fff; text-decoration:none; }
-        footer .contact img { width:24px; height:24px; }
+        footer .footer-links { 
+            display:flex; 
+            justify-content:center; 
+            gap:20px; 
+            flex-wrap:wrap; 
+            margin:10px 0; 
+        }
+        footer .footer-links a { 
+            color:#0a6a9a; 
+            text-decoration:none; 
+            font-weight:500;
+        }
+        footer .footer-links a:hover { text-decoration:underline; }
+        footer .contact { 
+            display:flex; 
+            justify-content:center; 
+            gap:20px; 
+            flex-wrap:wrap; 
+            margin:10px 0; 
+        }
+        footer .contact a { 
+            display:flex; 
+            align-items:center; 
+            gap:8px; 
+            color:#1a3a5a; 
+            text-decoration:none; 
+            font-weight:500;
+        }
+        footer .contact a:hover { color:#0a6a9a; }
+        footer .contact img { width:22px; height:22px; }
         
         /* Sticky Ad - Bottom Right */
         .sticky-ad {
-            position:fixed; bottom:20px; right:20px; z-index:9999;
-            width:160px; height:300px; background:#111a2e; border-radius:10px;
-            box-shadow:0 0 20px #00000088; padding:5px; display:flex; align-items:center; justify-content:center;
+            position:fixed; 
+            bottom:20px; 
+            right:20px; 
+            z-index:9999;
+            width:160px; 
+            height:300px; 
+            background:#ffffff; 
+            border-radius:16px;
+            box-shadow:0 8px 30px rgba(0,0,0,0.12); 
+            padding:6px; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center;
+            border:1px solid #dce8f2;
         }
         .sticky-ad .close-btn {
-            position:absolute; top:-10px; right:-10px; background:#ff3333; color:#fff;
-            border:none; border-radius:50%; width:24px; height:24px; cursor:pointer; font-weight:bold; font-size:14px;
+            position:absolute; 
+            top:-12px; 
+            right:-12px; 
+            background:#ff4a4a; 
+            color:#fff;
+            border:none; 
+            border-radius:50%; 
+            width:28px; 
+            height:28px; 
+            cursor:pointer; 
+            font-weight:bold; 
+            font-size:16px;
+            box-shadow:0 2px 8px rgba(255,0,0,0.3);
         }
         @media (max-width:480px) {
             .sticky-ad { width:140px; height:260px; bottom:10px; right:10px; }
             .brand h1 { font-size:22px; }
+            .container { padding:12px; }
         }
-        
-        /* Popunder Script - added inline */
     </style>
 </head>
 <body>
@@ -141,13 +307,13 @@
         <header>
             <div class="brand">
                 <div class="flag-container">
+                    <!-- پاکستانی جھنڈا (صرف SVG) -->
                     <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
                         <rect width="60" height="40" fill="#01411C"/>
-                        <rect width="60" height="13.33" fill="#FFFFFF"/>
-                        <rect y="26.66" width="60" height="13.33" fill="#FFFFFF"/>
-                        <circle cx="30" cy="20" r="7" fill="#FFFFFF"/>
-                        <circle cx="30" cy="20" r="5" fill="#01411C"/>
-                        <path d="M30 15 L33 18 L37 17 L34 21 L37 25 L33 23 L30 27 L27 23 L23 25 L26 21 L23 17 L27 18 Z" fill="#FFFFFF"/>
+                        <rect width="20" height="40" fill="#FFFFFF"/>
+                        <circle cx="36" cy="20" r="7" fill="#FFFFFF"/>
+                        <circle cx="36" cy="20" r="5" fill="#01411C"/>
+                        <path d="M36 15 L39 18 L43 17 L40 21 L43 25 L39 23 L36 27 L33 23 L29 25 L32 21 L29 17 L33 18 Z" fill="#FFFFFF"/>
                     </svg>
                 </div>
                 <h1>BijliBillCheck</h1>
@@ -369,7 +535,7 @@
             }, 500);
         }
     </script>
-    <!-- Native Ad (optional) - placed in footer or anywhere -->
+    <!-- Native Ad (optional) - placed in footer -->
     <script async="async" data-cfasync="false" src="https://recallscarce.com/ba99cfb60da9719efc2f47b83f6f9fa4/invoke.js"></script>
     <div id="container-ba99cfb60da9719efc2f47b83f6f9fa4" style="display:none;"></div>
 </body>
