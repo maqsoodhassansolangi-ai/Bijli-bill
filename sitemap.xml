@@ -3,7 +3,21 @@
   <url>
     <loc>https://bijli-bill.vercel.app/</loc>
     <lastmod>2026-07-13</lastmod>
-    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bijli-bill.vercel.app/dmca.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bijli-bill.vercel.app/privacy.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bijli-bill.vercel.app/terms.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <priority>0.5</priority>
   </url>
 </urlset>
