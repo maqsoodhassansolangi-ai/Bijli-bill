@@ -65,7 +65,7 @@
         .brand { 
             display:flex; 
             align-items:center; 
-            gap:12px; 
+            gap:15px; 
             flex:1;
             justify-content:center;
         }
@@ -78,6 +78,7 @@
             margin:0 10px;
         }
         
+        /* جھنڈا - براہِ راست SVG (کوئی لنک نہیں) */
         .flag-container {
             width:45px;
             height:30px;
@@ -87,11 +88,10 @@
             overflow:hidden;
             box-shadow:0 2px 6px rgba(0,0,0,0.12);
         }
-        .flag-container img { 
+        .flag-container svg { 
             width:100%; 
             height:100%; 
             display:block;
-            object-fit:cover;
         }
         @keyframes waveFlag {
             0%,100% { transform:skewX(-4deg) rotate(0deg) scaleX(1); }
@@ -114,7 +114,7 @@
             letter-spacing:1px;
         }
         
-        /* اناؤنسمنٹ بار 2 (موونگ ٹکر) */
+        /* اناؤنسمنٹ بار 2 (موونگ ٹکر - دائیں سے بائیں، آہستہ، لمبا جملہ) */
         .ticker-wrapper {
             background:#0a2a4a;
             border-radius:40px;
@@ -124,6 +124,8 @@
             white-space:nowrap;
             box-shadow:0 4px 12px rgba(0, 40, 80, 0.15);
             border:1px solid #1a5a8a;
+            direction:ltr; /* دائیں سے بائیں حرکت کے لیے */
+            position:relative;
         }
         .ticker-text {
             display:inline-block;
@@ -131,12 +133,13 @@
             font-weight:600;
             font-size:16px;
             padding-left:100%;
-            animation: tickerMove 20s linear infinite;
-            letter-spacing:0.5px;
+            animation: tickerMove 35s linear infinite;
+            letter-spacing:1px;
+            white-space:nowrap;
         }
         @keyframes tickerMove {
             0% { transform:translateX(0); }
-            100% { transform:translateX(-200%); }
+            100% { transform:translateX(-100%); }
         }
         
         .top-ad { 
@@ -326,28 +329,44 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <!-- Left Flag -->
+            <!-- Left Flag (براہِ راست SVG) -->
             <div class="flag-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/320px-Flag_of_Pakistan.svg.png" alt="پاکستانی جھنڈا">
+                <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="15" height="40" fill="#FFFFFF"/>
+                    <rect x="15" width="45" height="40" fill="#01411C"/>
+                    <g transform="translate(37, 20)">
+                        <circle cx="0" cy="0" r="6.5" fill="#FFFFFF"/>
+                        <circle cx="2.2" cy="0" r="5.5" fill="#01411C"/>
+                        <path d="M0 -4.5 L1.3 -1.5 L4.5 -1.5 L2 0.5 L3 3.5 L0 1.5 L-3 3.5 L-2 0.5 L-4.5 -1.5 L-1.3 -1.5 Z" fill="#FFFFFF"/>
+                    </g>
+                </svg>
             </div>
             
             <div class="brand">
                 <h1>BijliBillCheck</h1>
             </div>
             
-            <!-- Right Flag -->
+            <!-- Right Flag (براہِ راست SVG) -->
             <div class="flag-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/320px-Flag_of_Pakistan.svg.png" alt="پاکستانی جھنڈا">
+                <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="15" height="40" fill="#FFFFFF"/>
+                    <rect x="15" width="45" height="40" fill="#01411C"/>
+                    <g transform="translate(37, 20)">
+                        <circle cx="0" cy="0" r="6.5" fill="#FFFFFF"/>
+                        <circle cx="2.2" cy="0" r="5.5" fill="#01411C"/>
+                        <path d="M0 -4.5 L1.3 -1.5 L4.5 -1.5 L2 0.5 L3 3.5 L0 1.5 L-3 3.5 L-2 0.5 L-4.5 -1.5 L-1.3 -1.5 Z" fill="#FFFFFF"/>
+                    </g>
+                </svg>
             </div>
         </header>
         
         <!-- Announcement Bar 1 (فکسڈ) -->
         <div class="announcement">⚡ بجلی بچائیں، اپنا بل چیک کریں! ⚡</div>
         
-        <!-- Announcement Bar 2 (موونگ ٹکر) -->
+        <!-- Announcement Bar 2 (موونگ ٹکر - آہستہ، لمبا، دائیں سے بائیں) -->
         <div class="ticker-wrapper">
             <div class="ticker-text">
-                📢 کیا آپ اپنی ویب سائٹ کو پیشہ ورانہ اور خوبصورت بنانا چاہتے ہیں؟ ہمارے ماہرین سے رابطہ کریں — ای میل اور واٹس ایپ نیچے فوٹر میں موجود ہیں! 📢
+📢 کیا آپ اپنی ویب سائٹ یا ویب پیج کو پیشہ ورانہ، خوبصورت اور پرکشش انداز میں ڈیزائن کرانا چاہتے ہیں؟ ہمارے تجربہ کار ڈویلپرز آپ کی ہر ضرورت کو پورا کرنے کے لیے حاضر ہیں — نیچے دیے گئے ای میل اور واٹس ایپ کے ذریعے ہم سے رابطہ کریں اور اپنے خوابوں کی ویب سائٹ کو حقیقت کا روپ دیں! 📢
             </div>
         </div>
         
