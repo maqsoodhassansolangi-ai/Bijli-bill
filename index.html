@@ -12,263 +12,51 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; padding: 15px; position: relative; min-height: 100vh; }
-        
-        /* === خفیہ بجلی کے نشانات === */
-        body::before, body::after {
-            content: "⚡";
-            position: fixed;
-            font-size: 120px;
-            color: rgba(255, 215, 0, 0.08);
-            pointer-events: none;
-            z-index: -1;
-            animation: lightningFlicker 4s infinite ease-in-out alternate;
-        }
+        body::before, body::after { content: "⚡"; position: fixed; font-size: 120px; color: rgba(255, 215, 0, 0.08); pointer-events: none; z-index: -1; animation: lightningFlicker 4s infinite ease-in-out alternate; }
         body::before { top: 10%; left: 5%; }
         body::after { bottom: 20%; right: 5%; animation-delay: 2s; }
-        @keyframes lightningFlicker {
-            0% { opacity: 0.05; transform: scale(1) rotate(0deg); }
-            50% { opacity: 0.15; transform: scale(1.1) rotate(10deg); }
-            100% { opacity: 0.05; transform: scale(1) rotate(-5deg); }
-        }
-
-        .container { max-width: 480px; margin: 0 auto; }
-        
-        /* === پاکستانی جھنڈا === */
-        .header { 
-            background: linear-gradient(135deg, #1e3a8a, #10b981); 
-            padding: 15px; 
-            border-radius: 15px; 
-            text-align: center; 
-            margin-bottom: 15px; 
-            position: relative; 
-            overflow: hidden; 
-        }
-        .flag { 
-            position: absolute; 
-            top: 5px; 
-            left: 5px; 
-            width: 50px; 
-            height: 30px; 
-            background: linear-gradient(135deg, #01411c 50%, #ffffff 50%); 
-            animation: wave 3s infinite ease-in-out; 
-            border-radius: 5px; 
-        }
-        .flag::after {
-            content: "☪";
-            position: absolute;
-            top: 50%;
-            left: 55%;
-            transform: translate(-50%, -50%);
-            font-size: 18px;
-            color: #fff;
-        }
-        @keyframes wave { 
-            0% { transform: rotate(0deg); } 
-            25% { transform: rotate(3deg); } 
-            75% { transform: rotate(-3deg); } 
-            100% { transform: rotate(0deg); } 
-        }
-        .header h1 { 
-            color: #fff; 
-            font-size: 24px; 
-            text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc; 
-            margin: 0; 
-            font-weight: bold; 
-            letter-spacing: 1px; 
-        }
-        
-        /* === اناؤنسمنٹ بار === */
-        .announce { 
-            background: #fbbf24; 
-            padding: 8px; 
-            border-radius: 10px; 
-            margin-bottom: 15px; 
-            font-weight: bold; 
-            overflow: hidden; 
-            white-space: nowrap; 
-            animation: scroll 20s linear infinite; 
-            font-size: 14px; 
-        }
-        @keyframes scroll { 
-            0% { transform: translateX(100%); } 
-            100% { transform: translateX(-100%); } 
-        }
-        
-        /* === کارڈ === */
-        .card { 
-            background: white; 
-            border-radius: 20px; 
-            padding: 20px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            margin-bottom: 15px; 
-        }
+        @keyframes lightningFlicker { 0% { opacity: 0.05; transform: scale(1) rotate(0deg); } 50% { opacity: 0.15; transform: scale(1.1) rotate(10deg); } 100% { opacity: 0.05; transform: scale(1) rotate(-5deg); } }
+      .container { max-width: 480px; margin: 0 auto; }
+      .header { background: linear-gradient(135deg, #1e3a8a, #10b981); padding: 15px; border-radius: 15px; text-align: center; margin-bottom: 15px; position: relative; overflow: hidden; }
+      .flag { position: absolute; top: 5px; left: 5px; width: 50px; height: 30px; background: linear-gradient(135deg, #01411c 50%, #ffffff 50%); animation: wave 3s infinite ease-in-out; border-radius: 5px; }
+      .flag::after { content: "☪"; position: absolute; top: 50%; left: 55%; transform: translate(-50%, -50%); font-size: 18px; color: #fff; }
+        @keyframes wave { 0% { transform: rotate(0deg); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } 100% { transform: rotate(0deg); } }
+      .header h1 { color: #fff; font-size: 24px; text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc; margin: 0; font-weight: bold; letter-spacing: 1px; }
+      .announce { background: #fbbf24; padding: 8px; border-radius: 10px; margin-bottom: 15px; font-weight: bold; overflow: hidden; white-space: nowrap; animation: scroll 20s linear infinite; font-size: 14px; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+      .card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
         h2 { color: #1e3a8a; margin-bottom: 15px; font-size: 20px; text-align: center; }
         label { display: block; font-weight: bold; margin-bottom: 5px; color: #374151; font-size: 14px; }
-        select, input { 
-            width: 100%; 
-            padding: 14px; 
-            border: 2px solid #ddd; 
-            border-radius: 12px; 
-            font-size: 16px; 
-            margin-bottom: 12px; 
-            background: #fafafa; 
-        }
+        select, input { width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 12px; font-size: 16px; margin-bottom: 12px; background: #fafafa; }
         select:focus, input:focus { border-color: #10b981; outline: none; }
-        .btn-primary { 
-            width: 100%; 
-            padding: 16px; 
-            background: #10b981; 
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            font-size: 18px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); 
-        }
-        .btn-primary:active { transform: scale(0.98); }
-        
-        /* === ایڈ جگہیں === */
-        .ad-place { margin: 15px 0; min-height: 100px; background: #f9fafb; border-radius: 12px; padding: 10px; text-align: center; }
-        .ad-place-small { margin: 10px 0; min-height: 60px; background: #f9fafb; border-radius: 8px; padding: 8px; text-align: center; }
-        
-        .share-btn { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            width: 100%; 
-            padding: 12px; 
-            background: #25D366; 
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            font-size: 16px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            margin-top: 10px; 
-        }
-        
-        /* === سٹکی فلور ایڈ === */
-        .sticky-footer-ad {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 300px;
-            max-width: 90%;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            padding: 10px;
-            z-index: 999;
-            display: none;
-        }
-        .sticky-footer-ad .close-btn {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        
-        /* === فوٹر === */
-        .footer { 
-            margin-top: 20px; 
-            text-align: center; 
-            padding: 15px; 
-            background: #fff; 
-            border-radius: 15px; 
-        }
-        .footer .icons { 
-            display: flex; 
-            justify-content: center; 
-            gap: 20px; 
-            margin-bottom: 10px; 
-        }
-        .footer .icons a.gmail {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            background: #D44638;
-            border-radius: 4px;
-            color: white;
-            font-size: 20px;
-            line-height: 32px;
-            text-align: center;
-            text-decoration: none;
-        }
-        .footer .icons a.whatsapp {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            background: #25D366;
-            border-radius: 50%;
-            color: white;
-            font-size: 22px;
-            line-height: 32px;
-            text-align: center;
-            text-decoration: none;
-        }
-        .footer .disclaimer { font-size: 11px; color: #6b7280; margin-bottom: 5px; }
-        .footer .copyright { font-size: 13px; color: #374151; margin-bottom: 3px; }
-        .footer .developer { font-size: 12px; color: #9ca3af; }
-        
-        /* === انٹرسٹیشل ایڈ === */
-        .interstitial-overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.9); 
-            z-index: 9999; 
-            display: none; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            color: white; 
-        }
-        .interstitial-overlay .ad-box { 
-            width: 90%; 
-            max-width: 400px; 
-            background: white; 
-            padding: 20px; 
-            border-radius: 15px; 
-            color: black; 
-        }
-        .interstitial-overlay .skip-btn { 
-            margin-top: 20px; 
-            padding: 12px 30px; 
-            background: #10b981; 
-            color: white; 
-            border: none; 
-            border-radius: 10px; 
-            font-size: 16px; 
-            cursor: pointer; 
-            display: none; 
-        }
-        .interstitial-overlay .wait-msg { font-size: 18px; margin-bottom: 15px; color: #fff; }
+      .btn-primary { width: 100%; padding: 16px; background: #10b981; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
+      .btn-primary:active { transform: scale(0.98); }
+      .ad-place { margin: 15px 0; min-height: 100px; background: #f9fafb; border-radius: 12px; padding: 10px; text-align: center; }
+      .ad-place-small { margin: 10px 0; min-height: 60px; background: #f9fafb; border-radius: 8px; padding: 8px; text-align: center; }
+      .share-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; background: #25D366; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+      .sticky-footer-ad { position: fixed; bottom: 10px; right: 10px; width: 300px; max-width: 90%; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); padding: 10px; z-index: 999; display: none; }
+      .sticky-footer-ad.close-btn { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 14px; cursor: pointer; }
+      .footer { margin-top: 20px; text-align: center; padding: 15px; background: #fff; border-radius: 15px; }
+      .footer.icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 10px; }
+      .footer.icons a.gmail { display: inline-block; width: 32px; height: 32px; background: #D44638; border-radius: 4px; color: white; font-size: 20px; line-height: 32px; text-align: center; text-decoration: none; }
+      .footer.icons a.whatsapp { display: inline-block; width: 32px; height: 32px; background: #25D366; border-radius: 50%; color: white; font-size: 22px; line-height: 32px; text-align: center; text-decoration: none; }
+      .footer.disclaimer { font-size: 11px; color: #6b7280; margin-bottom: 5px; }
+      .footer.copyright { font-size: 13px; color: #374151; margin-bottom: 3px; }
+      .footer.developer { font-size: 12px; color: #9ca3af; }
+      .interstitial-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; color: white; }
+      .interstitial-overlay.ad-box { width: 90%; max-width: 400px; background: white; padding: 20px; border-radius: 15px; color: black; }
+      .interstitial-overlay.skip-btn { margin-top: 20px; padding: 12px 30px; background: #10b981; color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; display: none; }
+      .interstitial-overlay.wait-msg { font-size: 18px; margin-bottom: 15px; color: #fff; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- ہیڈر -->
         <div class="header">
             <div class="flag"></div>
             <h1>BijliBillCheck</h1>
         </div>
-
         <div class="announce" id="announceBar">بجلی بچائیں، اپنا بل چیک کریں!</div>
-
-        <!-- TOP AD (ہیڈر کے نیچے) -->
         <div class="ad-place" id="topAd"></div>
-
         <div class="card">
             <h2>اپنا بجلی بل چیک کریں</h2>
             <label>صوبہ منتخب کریں</label>
@@ -279,35 +67,23 @@
                 <option value="Khyber Pakhtunkhwa">خیبر پختونخوا / KPK</option>
                 <option value="Balochistan">Balochistan / بلوچستان</option>
             </select>
-
             <label>بجلی کمپنی منتخب کریں</label>
             <select id="companySelect">
                 <option value="">-- پہلے صوبہ چنیں --</option>
             </select>
-
             <label>ریفرنس نمبر (اختیاری)</label>
             <input type="text" id="refNo" placeholder="ریفرنس نمبر درج کریں">
-
             <label>کنزیومر نمبر (اختیاری)</label>
             <input type="text" id="consumerNo" placeholder="کنزیومر نمبر درج کریں">
-
-            <!-- BEFORE BUTTON AD (بٹن کے اوپر) -->
             <div class="ad-place-small" id="beforeBtnAd"></div>
-
             <button class="btn-primary" onclick="checkBill()">بل چیک کریں</button>
-
-            <!-- MAIN AD (بٹن کے بعد) -->
             <div class="ad-place" id="mainAd"></div>
-
             <button class="share-btn" onclick="shareWhatsApp()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.666 1.447 5.18L2 22l4.82-1.447A9.974 9.974 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.75 0-3.38-.56-4.69-1.51l-.35-.25-2.97.88.88-2.97-.25-.35A7.948 7.948 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
                 یہ سائٹ شیئر کریں
             </button>
         </div>
-
-        <!-- FOOTER AD (فوٹر کے اوپر) -->
         <div class="ad-place" id="footerAd"></div>
-
         <div class="footer">
             <div class="icons">
                 <a href="mailto:maqsoodhassansolangi@gmail.com" target="_blank" class="gmail" title="Email">✉</a>
@@ -320,21 +96,17 @@
             <div class="developer">Developed by MH Developers</div>
         </div>
     </div>
-
-    <!-- سٹکی فلور ایڈ -->
     <div class="sticky-footer-ad" id="stickyAd">
         <button class="close-btn" onclick="document.getElementById('stickyAd').style.display='none'">×</button>
         <div id="stickyAdContent"></div>
     </div>
-
     <div class="interstitial-overlay" id="interstitialOverlay">
         <div class="wait-msg" id="waitMsg">براہِ کرم انتظار کریں، آپ کا بل چیک کیا جا رہا ہے۔</div>
         <div class="ad-box" id="interstitialAd"></div>
         <button class="skip-btn" id="skipBtn" onclick="skipAd()">Skip Ad</button>
     </div>
-    <script>
+        <script>
     let appData = {};
-
     async function loadData() {
         try {
             const res = await fetch('/data.json');
@@ -342,12 +114,7 @@
         } catch(e) {
             appData = {
                 announceText: "بجلی بچائیں، اپنا بل چیک کریں!",
-                mainAdCode: "",
-                topAdCode: "",
-                beforeBtnAdCode: "",
-                footerAdCode: "",
-                stickyAdCode: "",
-                interstitialAdCode: "",
+                mainAdCode: "", topAdCode: "", beforeBtnAdCode: "", footerAdCode: "", stickyAdCode: "", interstitialAdCode: "",
                 companies: [
                     { province: "Punjab", name: "MEPCO", url: "https://bill.pitc.com.pk/mepcobill" },
                     { province: "Punjab", name: "LESCO", url: "https://bill.pitc.com.pk/lescobill" },
@@ -365,18 +132,23 @@
             };
         }
         document.getElementById('announceBar').innerText = appData.announceText;
-        
-        // تمام ایڈ جگہیں لوڈ کریں
-        document.getElementById('mainAd').innerHTML = appData.mainAdCode;
-        document.getElementById('topAd').innerHTML = appData.topAdCode;
-        document.getElementById('beforeBtnAd').innerHTML = appData.beforeBtnAdCode;
-        document.getElementById('footerAd').innerHTML = appData.footerAdCode;
-        document.getElementById('stickyAdContent').innerHTML = appData.stickyAdCode;
+        function runAdScript(containerId, adCode) {
+            const container = document.getElementById(containerId);
+            if (!container ||!adCode) return;
+            container.innerHTML = '';
+            const range = document.createRange();
+            range.selectNode(container);
+            const fragment = range.createContextualFragment(adCode);
+            container.appendChild(fragment);
+        }
+        runAdScript('mainAd', appData.mainAdCode);
+        runAdScript('topAd', appData.topAdCode);
+        runAdScript('beforeBtnAd', appData.beforeBtnAdCode);
+        runAdScript('footerAd', appData.footerAdCode);
+        runAdScript('stickyAdContent', appData.stickyAdCode);
         if(appData.stickyAdCode) document.getElementById('stickyAd').style.display = 'block';
-        
         updateCompanies();
     }
-
     function updateCompanies() {
         const province = document.getElementById('provinceSelect').value;
         const companySelect = document.getElementById('companySelect');
@@ -390,242 +162,169 @@
             companySelect.appendChild(opt);
         });
     }
-
     function checkBill() {
         const refNo = document.getElementById('refNo').value.trim();
         const consumerNo = document.getElementById('consumerNo').value.trim();
         const url = document.getElementById('companySelect').value;
-
-        if(!url) {
-            alert('براہِ کرم صوبہ اور کمپنی منتخب کریں');
-            return;
-        }
-
-        if(!refNo && !consumerNo) {
-            alert('فیلڈ خالی ہے، براہِ کرم نمبر درج کریں');
-            return;
-        }
-
-        if(refNo && refNo.length < 5) {
-            alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
-            return;
-        }
-        if(consumerNo && consumerNo.length < 5) {
-            alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں');
-            return;
-        }
-
-        // انٹرسٹیشل ایڈ کے لیے سمارٹ لنک
+        if(!url) { alert('براہِ کرم صوبہ اور کمپنی منتخب کریں'); return; }
+        if(!refNo &&!consumerNo) { alert('فیلڈ خالی ہے، براہِ کرم نمبر درج کریں'); return; }
+        if(refNo && refNo.length < 5) { alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں'); return; }
+        if(consumerNo && consumerNo.length < 5) { alert('نمبر کم ہے، براہِ کرم مکمل نمبر درج کریں'); return; }
         const overlay = document.getElementById('interstitialOverlay');
         const adBox = document.getElementById('interstitialAd');
-        
-        // اگر interstitialAdCode میں سمارٹ لنک موجود ہے تو اسے استعمال کریں
-        if (appData.interstitialAdCode && appData.interstitialAdCode.trim() !== '') {
-            adBox.innerHTML = appData.interstitialAdCode;
+        if (appData.interstitialAdCode && appData.interstitialAdCode.trim()!== '') {
+            const range = document.createRange();
+            range.selectNode(adBox);
+            adBox.innerHTML = '';
+            const fragment = range.createContextualFragment(appData.interstitialAdCode);
+            adBox.appendChild(fragment);
             document.getElementById('waitMsg').style.display = 'block';
             document.getElementById('skipBtn').style.display = 'none';
             overlay.style.display = 'flex';
-
             setTimeout(() => {
                 document.getElementById('skipBtn').style.display = 'block';
                 document.getElementById('waitMsg').style.display = 'none';
             }, 15000);
-            
             window._billUrl = url;
         } else {
-            // اگر کوڈ نہیں ہے تو براہِ راست بل کھولیں
             window.open(url, '_blank');
         }
     }
-
     function skipAd() {
         document.getElementById('interstitialOverlay').style.display = 'none';
         window.open(window._billUrl, '_blank');
     }
-
     function shareWhatsApp() {
         const url = encodeURIComponent('https://bijli-bill.vercel.app');
         window.open('https://wa.me/?text=' + url, '_blank');
     }
-
-    // آٹو ریفریش ایڈز (ہر 20 سیکنڈ بعد)
-    function autoRefreshAds() {
-        const adSlots = ['mainAd', 'topAd', 'beforeBtnAd', 'footerAd'];
-        adSlots.forEach(id => {
-            const el = document.getElementById(id);
-            if(el && appData[id + 'Code']) {
-                el.innerHTML = appData[id + 'Code'];
-            }
-        });
-    }
-    setInterval(autoRefreshAds, 20000);
-
     loadData();
-                if (window.location.search.includes('admin=bakhtawer787')) {
-            document.body.innerHTML = `
-                <div style="max-width:600px; margin:20px auto; padding:20px; background:white; border-radius:15px; font-family:Arial;">
-                    <h1 style="color:#1e3a8a;">🔒 Admin Panel</h1>
-                    
-                    <div style="margin-top:20px;">
-                        <h3>Announcement Bar</h3>
-                        <input type="text" id="newAnnounce" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Enter new text">
-                        <button onclick="updateData('announceText', document.getElementById('newAnnounce').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
-                        <div id="msg-announce" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-                    
-                    <div style="margin-top:20px;">
-                        <h3>Main Ad Code</h3>
-                        <textarea id="newMainAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('mainAdCode', document.getElementById('newMainAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
-                        <div id="msg-mainAd" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-
-                    <div style="margin-top:20px;">
-                        <h3>Top Ad Code</h3>
-                        <textarea id="newTopAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('topAdCode', document.getElementById('newTopAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
-                        <div id="msg-topAd" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-
-                    <div style="margin-top:20px;">
-                        <h3>Before Button Ad Code</h3>
-                        <textarea id="newBeforeBtnAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('beforeBtnAdCode', document.getElementById('newBeforeBtnAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
-                        <div id="msg-beforeBtnAd" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-
-                    <div style="margin-top:20px;">
-                        <h3>Footer Ad Code</h3>
-                        <textarea id="newFooterAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('footerAdCode', document.getElementById('newFooterAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
-                        <div id="msg-footerAd" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-
-                    <div style="margin-top:20px;">
-                        <h3>Sticky Ad Code</h3>
-                        <textarea id="newStickyAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
-                        <button onclick="updateData('stickyAdCode', document.getElementById('newStickyAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
-                        <div id="msg-stickyAd" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-                    
-                    <div style="margin-top:20px;">
-                        <h3>Add New Company</h3>
-                        <select id="newProvince" style="width:100%; padding:10px; margin-bottom:5px;">
-                            <option value="Punjab">Punjab</option>
-                            <option value="Sindh">Sindh</option>
-                            <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
-                            <option value="Balochistan">Balochistan</option>
-                        </select>
-                        <input type="text" id="newCompanyName" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Company Name">
-                        <input type="text" id="newCompanyUrl" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Bill Check URL">
-                        <button onclick="addCompany(this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Add</button>
-                        <div id="msg-addCompany" style="font-size:12px; margin-top:5px; color:green;"></div>
-                    </div>
-
-                    <div style="margin-top:20px;">
-                        <h3>Current Companies</h3>
-                        <div id="companyList"></div>
-                    </div>
-                    
-                    <div style="margin-top:20px; text-align:center; color:#9ca3af; font-size:12px;">
-                        Logout: <a href="/" style="color:#1e3a8a;">Click here</a>
-                    </div>
+    if (window.location.search.includes('admin=bakhtawer787')) {
+        document.body.innerHTML = `
+            <div style="max-width:600px; margin:20px auto; padding:20px; background:white; border-radius:15px; font-family:Arial;">
+                <h1 style="color:#1e3a8a;">🔒 Admin Panel</h1>
+                <div style="margin-top:20px;">
+                    <h3>Announcement Bar</h3>
+                    <input type="text" id="newAnnounce" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Enter new text">
+                    <button onclick="updateData('announceText', document.getElementById('newAnnounce').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    <div id="msg-announce" style="font-size:12px; margin-top:5px; color:green;"></div>
                 </div>
-            `;
-
-            function renderCompanyList() {
-                const list = document.getElementById('companyList');
-                list.innerHTML = '';
-                appData.companies.forEach((c, i) => {
-                    const div = document.createElement('div');
-                    div.style.padding = '8px';
-                    div.style.borderBottom = '1px solid #eee';
-                    div.innerHTML = `
-                        <span>${c.province} - ${c.name}</span>
-                        <button onclick="deleteCompany(${i}, this)" style="float:right; background:#ef4444; color:white; border:none; border-radius:5px; padding:3px 10px;">Delete</button>
-                        <div id="msg-delete-${i}" style="font-size:11px; color:red;"></div>
-                    `;
-                    list.appendChild(div);
-                });
-            }
-            renderCompanyList();
-
-            async function updateData(key, value, btnElement) {
-                const msgDiv = btnElement.nextElementSibling;
-                if(!value) {
-                    msgDiv.innerText = '⚠️ Please enter a value';
-                    msgDiv.style.color = 'red';
-                    return;
-                }
-                appData[key] = value;
-                const result = await saveData();
-                if(result.success) {
-                    msgDiv.innerText = '✅ Data saved successfully!';
-                    msgDiv.style.color = 'green';
-                } else {
-                    msgDiv.innerText = '❌ Error: ' + result.error;
-                    msgDiv.style.color = 'red';
-                }
-                setTimeout(() => { msgDiv.innerText = ''; }, 5000);
-            }
-
-            async function addCompany(btnElement) {
-                const msgDiv = btnElement.nextElementSibling;
-                const province = document.getElementById('newProvince').value;
-                const name = document.getElementById('newCompanyName').value;
-                const url = document.getElementById('newCompanyUrl').value;
-                if(!name || !url) {
-                    msgDiv.innerText = '⚠️ Name and URL are required';
-                    msgDiv.style.color = 'red';
-                    return;
-                }
-                appData.companies.push({ province, name, url });
-                const result = await saveData();
-                if(result.success) {
-                    msgDiv.innerText = '✅ Company added successfully!';
-                    msgDiv.style.color = 'green';
-                    renderCompanyList();
-                } else {
-                    msgDiv.innerText = '❌ Error: ' + result.error;
-                    msgDiv.style.color = 'red';
-                }
-                setTimeout(() => { msgDiv.innerText = ''; }, 5000);
-            }
-
-            async function deleteCompany(index, btnElement) {
-                const msgDiv = btnElement.nextElementSibling;
-                if(!confirm('Are you sure you want to delete this company?')) return;
-                appData.companies.splice(index, 1);
-                const result = await saveData();
-                if(result.success) {
-                    msgDiv.innerText = '✅ Company deleted!';
-                    msgDiv.style.color = 'green';
-                    renderCompanyList();
-                } else {
-                    msgDiv.innerText = '❌ Error: ' + result.error;
-                    msgDiv.style.color = 'red';
-                }
-                setTimeout(() => { msgDiv.innerText = ''; }, 5000);
-            }
-
-            async function saveData() {
-                try {
-                    const res = await fetch('/save-data.js', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(appData)
-                    });
-                    if(res.ok) {
-                        return { success: true };
-                    } else {
-                        const errorText = await res.text();
-                        return { success: false, error: errorText };
-                    }
-                } catch(e) {
-                    return { success: false, error: e.message };
-                }
-            }
+                <div style="margin-top:20px;">
+                    <h3>Main Ad Code</h3>
+                    <textarea id="newMainAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                    <button onclick="updateData('mainAdCode', document.getElementById('newMainAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    <div id="msg-mainAd" style="font-size:12px; margin-top:5px; color:green;"></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <h3>Top Ad Code</h3>
+                    <textarea id="newTopAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                    <button onclick="updateData('topAdCode', document.getElementById('newTopAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    <div id="msg-topAd" style="font-size:12px; margin-top:5px; color:green;"></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <h3>Before Button Ad Code</h3>
+                    <textarea id="newBeforeBtnAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                    <button onclick="updateData('beforeBtnAdCode', document.getElementById('newBeforeBtnAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    <div id="msg-beforeBtnAd" style="font-size:12px; margin-top:5px; color:green;"></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <h3>Footer Ad Code</h3>
+                    <textarea id="newFooterAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                    <button onclick="updateData('footerAdCode', document.getElementById('newFooterAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    <div id="msg-footerAd" style="font-size:12px; margin-top:5px; color:green;"></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <h3>Sticky Ad Code</h3>
+                    <textarea id="newStickyAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra code"></textarea>
+                    <button onclick="updateData('stickyAdCode', document.getElementById('newStickyAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    <div id="msg-stickyAd" style="font-size:12px; margin-top:5px; color:green;"></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <h3>Interstitial Ad Code</h3>
+                    <textarea id="newInterstitialAd" rows="3" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Paste Adsterra Smart Link"></textarea>
+                    <button onclick="updateData('interstitialAdCode', document.getElementById('newInterstitialAd').value, this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Update</button>
+                    <div id="msg-interstitialAd" style="font-size:12px; margin-top:5px; color:green;"></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <h3>Add New Company</h3>
+                    <select id="newProvince" style="width:100%; padding:10px; margin-bottom:5px;">
+                        <option value="Punjab">Punjab</option>
+                        <option value="Sindh">Sindh</option>
+                        <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
+                        <option value="Balochistan">Balochistan</option>
+                    </select>
+                    <input type="text" id="newCompanyName" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Company Name">
+                    <input type="text" id="newCompanyUrl" style="width:100%; padding:10px; margin-bottom:5px;" placeholder="Bill Check URL">
+                    <button onclick="addCompany(this)" style="padding:10px 20px; background:#10b981; color:white; border:none; border-radius:8px;">Add</button>
+                    <div id="msg-addCompany" style="font-size:12px; margin-top:5px; color:green;"></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <h3>Current Companies</h3>
+                    <div id="companyList"></div>
+                </div>
+                <div style="margin-top:20px; text-align:center; color:#9ca3af; font-size:12px;">
+                    Logout: <a href="/" style="color:#1e3a8a;">Click here</a>
+                </div>
+            </div>
+        `;
+        function renderCompanyList() {
+            const list = document.getElementById('companyList');
+            list.innerHTML = '';
+            appData.companies.forEach((c, i) => {
+                const div = document.createElement('div');
+                div.style.padding = '8px';
+                div.style.borderBottom = '1px solid #eee';
+                div.innerHTML = `
+                    <span>${c.province} - ${c.name}</span>
+                    <button onclick="deleteCompany(${i}, this)" style="float:right; background:#ef4444; color:white; border:none; border-radius:5px; padding:3px 10px;">Delete</button>
+                    <div id="msg-delete-${i}" style="font-size:11px; color:red;"></div>
+                `;
+                list.appendChild(div);
+            });
         }
+        renderCompanyList();
+        async function updateData(key, value, btnElement) {
+            const msgDiv = btnElement.nextElementSibling;
+            if(!value) { msgDiv.innerText = '⚠️ Please enter a value'; msgDiv.style.color = 'red'; return; }
+            appData[key] = value;
+            const result = await saveData();
+            if(result.success) { msgDiv.innerText = '✅ Data saved successfully!'; msgDiv.style.color = 'green'; }
+            else { msgDiv.innerText = '❌ Error: ' + result.error; msgDiv.style.color = 'red'; }
+            setTimeout(() => { msgDiv.innerText = ''; }, 5000);
+        }
+        async function addCompany(btnElement) {
+            const msgDiv = btnElement.nextElementSibling;
+            const province = document.getElementById('newProvince').value;
+            const name = document.getElementById('newCompanyName').value;
+            const url = document.getElementById('newCompanyUrl').value;
+            if(!name ||!url) { msgDiv.innerText = '⚠️ Name and URL are required'; msgDiv.style.color = 'red'; return; }
+            appData.companies.push({ province, name, url });
+            const result = await saveData();
+            if(result.success) { msgDiv.innerText = '✅ Company added successfully!'; msgDiv.style.color = 'green'; renderCompanyList(); }
+            else { msgDiv.innerText = '❌ Error: ' + result.error; msgDiv.style.color = 'red'; }
+            setTimeout(() => { msgDiv.innerText = ''; }, 5000);
+        }
+        async function deleteCompany(index, btnElement) {
+            const msgDiv = btnElement.nextElementSibling;
+            if(!confirm('Are you sure you want to delete this company?')) return;
+            appData.companies.splice(index, 1);
+            const result = await saveData();
+            if(result.success) { msgDiv.innerText = '✅ Company deleted!'; msgDiv.style.color = 'green'; renderCompanyList(); }
+            else { msgDiv.innerText = '❌ Error: ' + result.error; msgDiv.style.color = 'red'; }
+            setTimeout(() => { msgDiv.innerText = ''; }, 5000);
+        }
+        async function saveData() {
+            try {
+                const res = await fetch('/save-data.js', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(appData)
+                });
+                if(res.ok) { return { success: true }; }
+                else { const errorText = await res.text(); return { success: false, error: errorText }; }
+            } catch(e) { return { success: false, error: e.message }; }
+        }
+    }
     </script>
 </body>
 </html>
