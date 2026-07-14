@@ -78,7 +78,6 @@
             margin:0 10px;
         }
         
-        /* جھنڈا - براہِ راست SVG */
         .flag-container {
             width:45px;
             height:30px;
@@ -100,7 +99,6 @@
             75% { transform:skewX(2deg) rotate(1deg) scaleX(0.98); }
         }
         
-        /* اناؤنسمنٹ بار 1 (فکسڈ) */
         .announcement {
             background:linear-gradient(90deg, #0a6a3a, #0a8a4a);
             color:#ffffff;
@@ -114,7 +112,6 @@
             letter-spacing:1px;
         }
         
-        /* اناؤنسمنٹ بار 2 (موونگ ٹکر - بائیں سے دائیں، فوری لوپ) */
         .ticker-wrapper {
             background:#0a2a4a;
             border-radius:40px;
@@ -141,15 +138,11 @@
             0% { transform:translateX(-100%); }
             100% { transform:translateX(100%); }
         }
-        /* یہ یقینی بناتا ہے کہ ٹکر فوری طور پر دوبارہ لوپ کرے */
-        .ticker-text {
-            animation: tickerMove 30s linear infinite;
-        }
         
         .top-ad { 
             text-align:center; 
             margin:5px 0 18px 0; 
-            min-height:50px; 
+            min-height:60px; 
             background:#ffffff; 
             border-radius:12px; 
             padding:6px; 
@@ -241,7 +234,7 @@
         .footer-ad { 
             text-align:center; 
             margin:12px 0 10px 0; 
-            min-height:50px; 
+            min-height:60px; 
             background:#f9fcff; 
             border-radius:12px; 
             padding:6px; 
@@ -333,7 +326,6 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <!-- Left Flag -->
             <div class="flag-container">
                 <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
                     <rect width="15" height="40" fill="#FFFFFF"/>
@@ -345,12 +337,9 @@
                     </g>
                 </svg>
             </div>
-            
             <div class="brand">
                 <h1>BijliBillCheck</h1>
             </div>
-            
-            <!-- Right Flag -->
             <div class="flag-container">
                 <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
                     <rect width="15" height="40" fill="#FFFFFF"/>
@@ -364,31 +353,25 @@
             </div>
         </header>
         
-        <!-- Announcement Bar 1 (فکسڈ) -->
         <div class="announcement">⚡ بجلی بچائیں، اپنا بل چیک کریں! ⚡</div>
         
-        <!-- Announcement Bar 2 (موونگ ٹکر - بائیں سے دائیں، فوری لوپ) -->
         <div class="ticker-wrapper">
-            <div class="ticker-text">
-📢 کیا آپ اپنی ویب سائٹ یا ویب پیج کو پیشہ ورانہ، خوبصورت اور پرکشش انداز میں ڈیزائن کرانا چاہتے ہیں؟ ہمارے تجربہ کار ڈویلپرز آپ کی ہر ضرورت کو پورا کرنے کے لیے حاضر ہیں — نیچے دیے گئے ای میل اور واٹس ایپ کے ذریعے ہم سے رابطہ کریں اور اپنے خوابوں کی ویب سائٹ کو حقیقت کا روپ دیں! 📢
-            </div>
+            <div class="ticker-text">📢 کیا آپ اپنی ویب سائٹ کو پیشہ ورانہ بنانا چاہتے ہیں؟ ہمارے ماہرین سے رابطہ کریں — نیچے دیے گئے ای میل اور واٹس ایپ پر! 📢</div>
         </div>
         
-        <!-- Top Ad -->
         <div class="top-ad">
             <script>
               atOptions = {
-                'key' : '3ef6c36c8fa10c47223f38c5ee53ebf4',
+                'key' : 'fde6b508d547ce079d2af683ec3bd681',
                 'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
+                'height' : 60,
+                'width' : 468,
                 'params' : {}
               };
             </script>
-            <script src="https://recallscarce.com/3ef6c36c8fa10c47223f38c5ee53ebf4/invoke.js"></script>
+            <script src="https://www.highperformanceformat.com/fde6b508d547ce079d2af683ec3bd681/invoke.js"></script>
         </div>
                 
-        <!-- Form -->
         <div class="form-box">
             <div class="form-group">
                 <label>صوبہ منتخب کریں</label>
@@ -415,59 +398,54 @@
                 <input type="text" id="consumerNo" placeholder="کنزیومر نمبر درج کریں" />
             </div>
             
-            <!-- Before Button Ad -->
             <div class="before-ad">
                 <script>
                   atOptions = {
-                    'key' : '3b33879f7c81a9969b0c179bb4610598',
+                    'key' : '8a8799e35edbe07cc53dec412ba2aa7d',
                     'format' : 'iframe',
                     'height' : 250,
                     'width' : 300,
                     'params' : {}
                   };
                 </script>
-                <script src="https://recallscarce.com/3b33879f7c81a9969b0c179bb4610598/invoke.js"></script>
+                <script src="https://www.highperformanceformat.com/8a8799e35edbe07cc53dec412ba2aa7d/invoke.js"></script>
             </div>
             
             <button class="btn-check" onclick="checkBill()">⚡ بل چیک کریں ⚡</button>
             
-            <!-- Main Ad After Button -->
             <div class="main-ad">
                 <script>
                   atOptions = {
-                    'key' : '3b33879f7c81a9969b0c179bb4610598',
+                    'key' : '8a8799e35edbe07cc53dec412ba2aa7d',
                     'format' : 'iframe',
                     'height' : 250,
                     'width' : 300,
                     'params' : {}
                   };
                 </script>
-                <script src="https://recallscarce.com/3b33879f7c81a9969b0c179bb4610598/invoke.js"></script>
+                <script src="https://www.highperformanceformat.com/8a8799e35edbe07cc53dec412ba2aa7d/invoke.js"></script>
             </div>
         </div>
         
-        <!-- WhatsApp Share -->
         <div class="share-section">
             <a href="https://wa.me/?text=اپنا بجلی بل چیک کریں - BijliBillCheck%20https://bijli-bill.vercel.app" target="_blank" class="share-btn">
                 📱 واٹس ایپ پر شیئر کریں
             </a>
         </div>
         
-        <!-- Footer Ad -->
         <div class="footer-ad">
             <script>
               atOptions = {
-                'key' : '3ef6c36c8fa10c47223f38c5ee53ebf4',
+                'key' : 'fde6b508d547ce079d2af683ec3bd681',
                 'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
+                'height' : 60,
+                'width' : 468,
                 'params' : {}
               };
             </script>
-            <script src="https://recallscarce.com/3ef6c36c8fa10c47223f38c5ee53ebf4/invoke.js"></script>
+            <script src="https://www.highperformanceformat.com/fde6b508d547ce079d2af683ec3bd681/invoke.js"></script>
         </div>
         
-        <!-- Footer -->
         <footer>
             <div class="contact">
                 <a href="mailto:maqsoodhassansolangi@gmail.com">
@@ -484,28 +462,25 @@
                 <a href="sitemap.xml">Sitemap</a>
             </div>
             <p style="margin:8px 0 4px;">ڈس کلیمر: یہ سائٹ صرف معلومات کے لیے ہے۔ براہِ کرم کمپنی کی آفیشل ویب سائٹ سے تصدیق کریں۔</p>
-            <p style="margin:4px 0;">&copy; 2026 BijliBillCheck. تمام حقوق محفوظ ہیں۔ | Developed by MH Developers</p>
+            <p style="margin:4px 0;">&copy; 2026 BijliBillCheck | Developed by MH Developers</p>
         </footer>
     </div>
     
-    <!-- Sticky Ad -->
     <div class="sticky-ad" id="stickyAd">
         <button class="close-btn" onclick="document.getElementById('stickyAd').style.display='none'">✕</button>
         <script>
           atOptions = {
-            'key' : 'b59fa71c77c1796d14fdb97c2d1e35c6',
+            'key' : 'bbe7c7b7d9033956f6cf69952cdd32b2',
             'format' : 'iframe',
             'height' : 300,
             'width' : 160,
             'params' : {}
           };
         </script>
-        <script src="https://recallscarce.com/b59fa71c77c1796d14fdb97c2d1e35c6/invoke.js"></script>
+        <script src="https://www.highperformanceformat.com/bbe7c7b7d9033956f6cf69952cdd32b2/invoke.js"></script>
     </div>
     
-    <!-- Popunder Script (loads on click) -->
     <script>
-        // Company data (آپ کے ڈیٹا کے مطابق)
         const companies = {
             punjab: [
                 { name: 'MEPCO', url: 'https://bill.pitc.com.pk/mepcobill' },
@@ -562,33 +537,20 @@
                 return;
             }
 
-            // Popunder
+            // Popunder (نیا کوڈ - pl30202274)
             const popunderScript = document.createElement('script');
-            popunderScript.innerHTML = `
-                atOptions = {
-                    'key' : '882d2c882ea1006b49c1131d05fe8c46',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
-            `;
+            popunderScript.src = 'https://pl30202274.effectivecpmnetwork.com/50/0d/1d/500d1d32ce5cc4edc200d9519cb90acc.js';
             document.body.appendChild(popunderScript);
-            const popunderInvoke = document.createElement('script');
-            popunderInvoke.src = 'https://recallscarce.com/882d2c882ea1006b49c1131d05fe8c46/invoke.js';
-            document.body.appendChild(popunderInvoke);
 
-            // Show loading message
             alert('براہِ کرم انتظار کریں، آپ کا بل چیک کیا جا رہا ہے۔');
 
-            // Redirect to bill
             setTimeout(() => {
                 window.open(company, '_blank');
             }, 500);
         }
     </script>
-    <!-- Native Ad (optional) - placed in footer -->
-    <script async="async" data-cfasync="false" src="https://recallscarce.com/ba99cfb60da9719efc2f47b83f6f9fa4/invoke.js"></script>
-    <div id="container-ba99cfb60da9719efc2f47b83f6f9fa4" style="display:none;"></div>
+    <!-- Native Ad -->
+    <script async="async" data-cfasync="false" src="https://pl30202275.effectivecpmnetwork.com/d0d0ea0b5ebeecdf1de7bdaede63cb31/invoke.js"></script>
+    <div id="container-d0d0ea0b5ebeecdf1de7bdaede63cb31" style="display:none;"></div>
 </body>
 </html>
